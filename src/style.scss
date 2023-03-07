@@ -1,0 +1,42 @@
+@import url('./components/button/button.scss');
+@import url('./components/modal/modal.scss');
+@import url('./components/input/input.scss');
+@import url('./components/icon/icon.scss');
+@import url('./components/field/field.scss');
+@import url('./components/checkbox/checkbox.scss');
+@import url('./components/auth/auth.scss');
+@import url('./components/errorPage/errorPage.scss');
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Source Sans Pro;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 21px;
+  color: #1E1E1E;
+}
+
+.error {
+  color: #F20F0F;
+}
+
+.link {
+  font-size: 11px;
+  color: #1C4D86;
+}

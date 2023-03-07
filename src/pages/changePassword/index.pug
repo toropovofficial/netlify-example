@@ -1,0 +1,19 @@
+include ../../components/button/button.pug 
+include ../../components/profileForm/index.pug
+
+head 
+    title заголовок
+    link(rel='stylesheet' href='./index.scss' type='text/css')
+    link(rel='stylesheet' href='../../style.scss' type='text/css')
+body 
+  .profile 
+    .profile__avatar
+
+    .profile__name Игорь
+
+    .profile__data
+      +yaProfileForm('password')
+    .profile__actions
+      +yaButton('Сохранить')
+
+

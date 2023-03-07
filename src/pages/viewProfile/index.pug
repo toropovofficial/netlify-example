@@ -1,0 +1,23 @@
+include ../../components/input/input.pug 
+include ../../components/profileForm/index.pug
+
+head 
+    title заголовок
+    link(rel='stylesheet' href='./index.scss' type='text/css')
+    link(rel='stylesheet' href='../../style.scss' type='text/css')
+body 
+  .profile 
+    .profile__avatar
+
+    .profile__name Игорь
+
+    .profile__data
+      +yaProfileForm('disabled')
+    .profile__actions
+      a.profile__change_data.link(href="../changeProfile/index.pug") Изменить данные
+
+      a.profile__change_password.link(href="../changePassword/index.pug") Изменить пароль
+
+      a.profile__exit.error(href="../../../static/index.pug") Выйти
+
+

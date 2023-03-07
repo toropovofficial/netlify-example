@@ -1,0 +1,55 @@
+include ../input/input.pug
+
+mixin yaProfileForm(status)
+  .profile__data__wrapper
+  if status == 'disabled'
+    .profile__data__item
+      span Почта
+      +yaInput('Почта', 'email', true, 'Почта', 'rtl')
+    .profile__data__item
+      span Логин
+      +yaInput('Логин', 'text', true, 'Логин', 'rtl')
+    .profile__data__item
+      span Имя
+      +yaInput('Имя', 'text', true, 'Имя', 'rtl')
+    .profile__data__item
+      span Фамилия
+      +yaInput('Фамилия', 'text', true, 'Фамилия', 'rtl')
+    .profile__data__item
+      span Имя в чате
+      +yaInput('Имя в чате', 'text', true, 'Имя в чате', 'rtl')
+    .profile__data__item
+      span Телефон
+      +yaInput('Телефон', 'tel', true, 'Телефон', 'rtl')
+
+  if status == 'active'
+    .profile__data__item
+      span Почта
+      +yaInput('Почта', 'email', false, 'Почта', 'rtl')
+    .profile__data__item
+      span Логин
+      +yaInput('Логин', 'text', false, 'Логин', 'rtl')
+    .profile__data__item
+      span Имя
+      +yaInput('Имя', 'text', false, 'Имя', 'rtl')
+    .profile__data__item
+      span Фамилия
+      +yaInput('Фамилия', 'text', false, 'Фамилия', 'rtl')
+    .profile__data__item
+      span Имя в чате
+      +yaInput('Имя в чате', 'text', false, 'Имя в чате', 'rtl')
+    .profile__data__item
+      span Телефон
+      +yaInput('Телефон', 'tel', false, 'Телефон', 'rtl')
+
+  if status == 'password'
+    .profile__data__item
+      span Старый пароль
+      +yaInput('Старый пароль', 'password', false, '123', 'rtl')
+    .profile__data__item
+      span Новый пароль
+      +yaInput('Новый пароль', 'password', false, '1234', 'rtl')
+    .profile__data__item
+      span Повторите новый пароль
+      +yaInput('Повторите новый пароль', 'password', false, '12345', 'rtl')
+    

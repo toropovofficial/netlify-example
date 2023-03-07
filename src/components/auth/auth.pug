@@ -1,0 +1,50 @@
+
+include ../modal/modal.pug
+include ../field/field.pug
+include ../checkbox/checkbox.pug
+include ../button/button.pug
+
+
+mixin yaAuth(auth)
+   +yaModal()
+      if auth == 'login'
+        h1.title Вход
+
+        div.field__wrapper
+          +yaField('user', 'Логин')
+
+        div.field__wrapper
+          +yaField('user', 'Пароль', 'password')
+
+        div.checkbox__wrapper
+          +yaCheckbox('Запомнить меня')
+
+        div.button__wrapper
+          +yaButton('Авторизоваться')
+
+        div.create__account__link
+          a.link.link__create(href="../../pages/registration/index.pug") Создать аккаунт
+
+      else
+        h1.title Регистрация
+
+        div.field__wrapper
+          +yaField('user', 'Почта', 'email')
+
+        div.field__wrapper
+          +yaField('user', 'Логин')
+
+        div.field__wrapper
+          +yaField('user', 'Телефон', 'tel')
+
+        div.field__wrapper
+          +yaField('user', 'Пароль', 'password')
+
+        div.field__wrapper
+          +yaField('user', 'Пароль (еще раз)', 'password')
+
+        div.button__wrapper
+          +yaButton('Зарегистрироваться')
+
+        div.create__account__link
+          a.link.link__create(href="../../pages/login/index.pug") Войти
