@@ -19,11 +19,11 @@ mixin yaAuth(auth)
         div.checkbox__wrapper
           +yaCheckbox('Запомнить меня')
 
-        //- div.button__wrapper
-        //-   +yaButton('Войти', '../../pages/chat/chat.pug')
+        div.button__wrapper
+          +yaButton('Войти', '../../pages/chat/chat.pug')
 
-        //- div.create__account__link
-        //-   a.link.link__create(href="../../pages/registration/registration.pug") Нет аккаунта?
+        div.create__account__link
+          a.link.link__create(href="../../pages/registration/registration.pug") Нет аккаунта?
 
       else
         h1.title Регистрация
