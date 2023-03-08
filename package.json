@@ -9,7 +9,7 @@
 },
   "scripts": {
     "start": "parcel static/index.html --port 3000",
-    "build": "CI= parcel build static/index.html"
+    "build": "parcel build static/index.html"
   },
   "homepage": "dist",
   "parcel-namer-struct": [
