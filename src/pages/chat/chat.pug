@@ -1,0 +1,18 @@
+include ../../components/modal/modal.pug 
+include ../../components/preloader/index.pug 
+preloader
+head 
+  title Чат
+  body 
+    +yaModal()
+      div.error Ой, этой страницы пока нет, доступны ссылки на другие страницы и примерный вид будущего лоадера
+      div 
+        a(href='../viewProfile/index.pug') Настройка профиля
+      div
+        a(href='../404/index.pug') Страница 404
+      div
+        a(href='../500/index.pug') Страница 500
+      div
+        a(href='../login/index.pug') Назад к логину
+
+      +yaLoader()

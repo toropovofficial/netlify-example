@@ -3,7 +3,6 @@ include ../../components/profileForm/index.pug
 
 head 
     title заголовок
-    link(rel='stylesheet' href='./index.scss' type='text/css')
     link(rel='stylesheet' href='../../style.scss' type='text/css')
 body 
   .profile 
@@ -14,6 +13,6 @@ body
     .profile__data
       +yaProfileForm('active')
     .profile__actions
-      +yaButton('Сохранить')
+      +yaButton('Сохранить', '../../pages/viewProfile/index.pug')
 
 
