@@ -4,9 +4,9 @@
   "description": "",
   "targets": {
     "default": {
-        "includeNodeModules": true
+      "includeNodeModules": true
     }
-},
+  },
   "scripts": {
     "start": "parcel static/index.html --port 3000",
     "build": "parcel build static/index.html"
@@ -22,8 +22,8 @@
     }
   ],
   "keywords": [],
-  "engines" : { 
-    "node" : "16.0.0" 
+  "engines": {
+    "node": "16.0.0"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +38,7 @@
     "jstransformer-uglify-js": "^1.2.0",
     "os-browserify": "^0.3.0",
     "parcel": "^2.8.3",
+    "parcel-plugin-asset-fourohfour": "^0.1.13",
     "parcel-plugin-at-alias": "^0.15.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10"
