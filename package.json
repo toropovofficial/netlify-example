@@ -1,0 +1,53 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "targets": {
+    "default": {
+      "includeNodeModules": true
+    }
+  },
+  "scripts": {
+    "start": "parcel static/index.html --port 3000",
+    "build": "parcel build static/index.html"
+  },
+  "homepage": "dist",
+  "parcel-namer-struct": [
+    {
+      "type": [
+        "scss",
+        "css"
+      ],
+      "dest": "/styles/"
+    }
+  ],
+  "keywords": [],
+  "engines": {
+    "node": "16.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.8.3",
+    "@parcel/transformer-sass": "^2.8.3",
+    "assert": "^2.0.0",
+    "buffer": "^5.7.1",
+    "express": "^4.18.2",
+    "fs": "*",
+    "fs-filesystem": "^2.1.2",
+    "jstransformer-uglify-js": "^1.2.0",
+    "os-browserify": "^0.3.0",
+    "parcel": "^2.8.3",
+    "parcel-plugin-asset-fourohfour": "^0.1.13",
+    "parcel-plugin-at-alias": "^0.15.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10"
+  },
+  "alias": {
+    "@components": "./src/components"
+  },
+  "dependencies": {
+    "@parcel/transformer-pug": "^2.8.3",
+    "fs": "*"
+  }
+}
