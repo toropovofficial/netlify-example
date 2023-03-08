@@ -1,2 +1,6 @@
-mixin yaButton(buttonText)
-  button.button=buttonText
+mixin yaButton(buttonText, link)
+  if link
+    a(href=link)
+      button.button=buttonText
+  else
+    button.button=buttonText

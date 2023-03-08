@@ -11,40 +11,46 @@ mixin yaAuth(auth)
         h1.title Вход
 
         div.field__wrapper
-          +yaField('user', 'Логин')
+          +yaField('user', 'Логин', 'text', false, 'login')
 
         div.field__wrapper
-          +yaField('user', 'Пароль', 'password')
+          +yaField('user', 'Пароль', 'password', false, 'password')
 
         div.checkbox__wrapper
           +yaCheckbox('Запомнить меня')
 
-        div.button__wrapper
-          +yaButton('Авторизоваться')
+        //- div.button__wrapper
+        //-   +yaButton('Войти', '../../pages/chat/chat.pug')
 
-        div.create__account__link
-          a.link.link__create(href="../../pages/registration/index.pug") Создать аккаунт
+        //- div.create__account__link
+        //-   a.link.link__create(href="../../pages/registration/registration.pug") Нет аккаунта?
 
       else
         h1.title Регистрация
 
         div.field__wrapper
-          +yaField('user', 'Почта', 'email')
+          +yaField('user', 'Почта', 'email', false, 'email')
 
         div.field__wrapper
-          +yaField('user', 'Логин')
+          +yaField('user', 'Логин', 'text', false, 'login')
 
         div.field__wrapper
-          +yaField('user', 'Телефон', 'tel')
+          +yaField('user', 'Имя', 'text', false, 'first_name')
 
         div.field__wrapper
-          +yaField('user', 'Пароль', 'password')
+          +yaField('user', 'Фамилия', 'text', false, 'second_name')
+
+        div.field__wrapper
+          +yaField('user', 'Телефон', 'tel', false, 'phone')
+
+        div.field__wrapper
+          +yaField('user', 'Пароль', 'password', false, 'password')
 
         div.field__wrapper
           +yaField('user', 'Пароль (еще раз)', 'password')
 
         div.button__wrapper
-          +yaButton('Зарегистрироваться')
+          +yaButton('Зарегистрироваться', '../../pages/viewProfile/index.pug')
 
         div.create__account__link
           a.link.link__create(href="../../pages/login/index.pug") Войти

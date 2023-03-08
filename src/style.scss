@@ -1,11 +1,13 @@
-@import url('./components/button/button.scss');
-@import url('./components/modal/modal.scss');
-@import url('./components/input/input.scss');
-@import url('./components/icon/icon.scss');
-@import url('./components/field/field.scss');
-@import url('./components/checkbox/checkbox.scss');
-@import url('./components/auth/auth.scss');
-@import url('./components/errorPage/errorPage.scss');
+@import url('./components/button/style.scss');
+@import url('./components/modal/style.scss');
+@import url('./components/input/style.scss');
+@import url('./components/icon/style.scss');
+@import url('./components/field/style.scss');
+@import url('./components/checkbox/style.scss');
+@import url('./components/auth/style.scss');
+@import url('./components/errorPage/style.scss');
+@import url('./components/preloader/style.scss');
+@import url('./components/profileForm/style.scss');
 
 body,
 html {

@@ -5,51 +5,51 @@ mixin yaProfileForm(status)
   if status == 'disabled'
     .profile__data__item
       span Почта
-      +yaInput('Почта', 'email', true, 'Почта', 'rtl')
+      +yaInput('Почта', 'email', true, 'Почта', 'rtl', 'email')
     .profile__data__item
       span Логин
-      +yaInput('Логин', 'text', true, 'Логин', 'rtl')
+      +yaInput('Логин', 'text', true, 'Логин', 'rtl', 'login')
     .profile__data__item
       span Имя
-      +yaInput('Имя', 'text', true, 'Имя', 'rtl')
+      +yaInput('Имя', 'text', true, 'Имя', 'rtl', 'first_name')
     .profile__data__item
       span Фамилия
-      +yaInput('Фамилия', 'text', true, 'Фамилия', 'rtl')
+      +yaInput('Фамилия', 'text', true, 'Фамилия', 'rtl', 'second_name')
     .profile__data__item
       span Имя в чате
-      +yaInput('Имя в чате', 'text', true, 'Имя в чате', 'rtl')
+      +yaInput('Имя в чате', 'text', true, 'Имя в чате', 'rtl', 'display_name')
     .profile__data__item
       span Телефон
-      +yaInput('Телефон', 'tel', true, 'Телефон', 'rtl')
+      +yaInput('Телефон', 'tel', true, 'Телефон', 'rtl', 'phone')
 
   if status == 'active'
     .profile__data__item
       span Почта
-      +yaInput('Почта', 'email', false, 'Почта', 'rtl')
+      +yaInput('Почта', 'email', false, 'Почта', 'rtl', 'email')
     .profile__data__item
       span Логин
-      +yaInput('Логин', 'text', false, 'Логин', 'rtl')
+      +yaInput('Логин', 'text', false, 'Логин', 'rtl', 'login')
     .profile__data__item
       span Имя
-      +yaInput('Имя', 'text', false, 'Имя', 'rtl')
+      +yaInput('Имя', 'text', false, 'Имя', 'rtl', 'first_name')
     .profile__data__item
       span Фамилия
-      +yaInput('Фамилия', 'text', false, 'Фамилия', 'rtl')
+      +yaInput('Фамилия', 'text', false, 'Фамилия', 'rtl', 'second_name')
     .profile__data__item
       span Имя в чате
-      +yaInput('Имя в чате', 'text', false, 'Имя в чате', 'rtl')
+      +yaInput('Имя в чате', 'text', false, 'Имя в чате', 'rtl', 'display_name')
     .profile__data__item
       span Телефон
-      +yaInput('Телефон', 'tel', false, 'Телефон', 'rtl')
+      +yaInput('Телефон', 'tel', false, 'Телефон', 'rtl', 'phone')
 
   if status == 'password'
     .profile__data__item
       span Старый пароль
-      +yaInput('Старый пароль', 'password', false, '123', 'rtl')
+      +yaInput('Старый пароль', 'password', false, '123', 'rtl', 'oldPassword')
     .profile__data__item
       span Новый пароль
-      +yaInput('Новый пароль', 'password', false, '1234', 'rtl')
+      +yaInput('Новый пароль', 'password', false, '1234', 'rtl', 'newPassword')
     .profile__data__item
       span Повторите новый пароль
-      +yaInput('Повторите новый пароль', 'password', false, '12345', 'rtl')
+      +yaInput('Повторите новый пароль', 'password', false, '12345', 'rtl', 'oldPassword')
     
