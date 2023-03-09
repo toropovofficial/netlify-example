@@ -1,18 +1,14 @@
 include ../../components/button/button.pug 
 include ../../components/profileForm/index.pug
 
-head 
-    title Смена пароля
-    link(rel='stylesheet' href='../../style.scss' type='text/css')
-body 
-  .profile 
-    .profile__avatar
+.profile 
+  .profile__avatar
 
-    .profile__name Игорь
+  .profile__name Игорь
 
-    .profile__data
-      +yaProfileForm('password')
-    .profile__actions
-      +yaButton('Сохранить', '/viewProfile')
+  .profile__data
+    +yaProfileForm('password')
+  .profile__actions
+    +yaButton('Сохранить', '/viewProfile')
 
 
