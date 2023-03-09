@@ -20,10 +20,10 @@ mixin yaAuth(auth)
           +yaCheckbox('Запомнить меня')
 
         div.button__wrapper
-          +yaButton('Войти', '/about')
+          +yaButton('Войти', '/chat')
 
         div.create__account__link
-         <!--[ a.link.link__create(href="../../pages/registration/registration.pug") Нет аккаунта?> ]-->
+         a.link.link__create(href="/registration") Нет аккаунта?
 
       else
         h1.title Регистрация
@@ -50,7 +50,7 @@ mixin yaAuth(auth)
           +yaField('user', 'Пароль (еще раз)', 'password')
 
         div.button__wrapper
-          +yaButton('Зарегистрироваться', '../../pages/viewProfile/index.pug')
+          +yaButton('Зарегистрироваться', '/chat')
 
         div.create__account__link
-          a.link.link__create(href="../../pages/login/index.pug") Войти
+          a.link.link__create(href="/login") Войти

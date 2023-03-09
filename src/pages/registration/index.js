@@ -1,3 +1,3 @@
-import registartion from 'bundle-text:./index.pug';
+import registration from 'bundle-text:./registration.pug';
 
-export default registartion
+export default registration
