@@ -10,9 +10,11 @@ console.log(123)
 const root = document.querySelector('#root')
 root.innerHTML = `${login}`
 console.log(123)
+debugger
 
 switch (document.location.pathname) {
   case '/registration':
+    debugger
     root.innerHTML = `${registration}`
     break;
   case '/login':
