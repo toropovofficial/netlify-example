@@ -6,8 +6,10 @@ import changePassword from './pages/changePassword/index'
 import chat from './pages/chat/index'
 import error404 from './pages/404/index'
 import error500 from './pages/500/index'
+console.log(123)
 const root = document.querySelector('#root')
 root.innerHTML = `${login}`
+console.log(123)
 
 switch (document.location.pathname) {
   case '/registration':
