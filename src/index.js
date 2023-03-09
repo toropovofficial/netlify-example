@@ -6,37 +6,34 @@ import changePassword from './pages/changePassword/index'
 import chat from './pages/chat/index'
 import error404 from './pages/404/index'
 import error500 from './pages/500/index'
-console.log(123)
-const root = document.querySelector('#root')
-root.innerHTML = `${login}`
-console.log(123)
-debugger
 
-switch (document.location.pathname) {
-  case '/registration':
-    console.log(123)
-    debugger
-    root.innerHTML = `${registration}`
-    break;
-  case '/login':
-    root.innerHTML = `${login}`
-    break;
-  case '/viewProfile':
-    root.innerHTML = `${viewProfile}`
-    break;
-  case '/changeProfile':
-    root.innerHTML = `${changeProfile}`
-    break;
-  case '/changePassword':
-    root.innerHTML = `${changePassword}`
-    break;
-  case '/chat':
-    root.innerHTML = `${chat}`
-    break;
-  case '/404':
-    root.innerHTML = `${error404}`
-    break;
-  case '/500':
-    root.innerHTML = `${error500}`
-    break;
+export const App = () => {
+  switch (document.location.pathname) {
+    case '/registration':
+      return registration
+      break;
+    case '/login':
+      return login
+      break;
+    case '/viewProfile':
+      return viewProfile 
+      break;
+    case '/changeProfile':
+      return changeProfile
+      break;
+    case '/changePassword':
+      return changePassword
+      break;
+    case '/chat':
+      return chat
+      break;
+    case '/404':
+      return error404
+      break;
+    case '/500':
+      return error500
+      break;
+    default:
+      return login
+  }
 }
