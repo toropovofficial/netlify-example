@@ -6,31 +6,32 @@ import changePassword from './pages/changePassword/index'
 import chat from './pages/chat/index'
 import error404 from './pages/404/index'
 import error500 from './pages/500/index'
-document.body.innerHTML = `${login}`
+const root = document.querySelector('#root')
+root.innerHTML = `${login}`
 
 switch (document.location.pathname) {
   case '/registration':
-    document.body.innerHTML = `${registration}`
+    root.innerHTML = `${registration}`
     break;
   case '/login':
-    document.body.innerHTML = `${login}`
+    root.innerHTML = `${login}`
     break;
   case '/viewProfile':
-    document.body.innerHTML = `${viewProfile}`
+    root.innerHTML = `${viewProfile}`
     break;
   case '/changeProfile':
-    document.body.innerHTML = `${changeProfile}`
+    root.innerHTML = `${changeProfile}`
     break;
   case '/changePassword':
-    document.body.innerHTML = `${changePassword}`
+    root.innerHTML = `${changePassword}`
     break;
   case '/chat':
-    document.body.innerHTML = `${chat}`
+    root.innerHTML = `${chat}`
     break;
   case '/404':
-    document.body.innerHTML = `${error404}`
+    root.innerHTML = `${error404}`
     break;
   case '/500':
-    document.body.innerHTML = `${error500}`
+    root.innerHTML = `${error500}`
     break;
 }
