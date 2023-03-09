@@ -14,6 +14,7 @@ debugger
 
 switch (document.location.pathname) {
   case '/registration':
+    console.log(123)
     debugger
     root.innerHTML = `${registration}`
     break;

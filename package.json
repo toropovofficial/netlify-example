@@ -2,16 +2,10 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "targets": {
-    "default": {
-      "includeNodeModules": true
-    }
-  },
   "scripts": {
     "start": "parcel static/index.html --port 3000",
     "build": "parcel build static/index.html"
   },
-  "homepage": "dist",
   "parcel-namer-struct": [
     {
       "type": [
