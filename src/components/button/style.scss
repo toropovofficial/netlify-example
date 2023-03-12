@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .button {
   display: flex;
   justify-content: center;
@@ -7,7 +9,7 @@
   border: none;
   width: 226px;
   height: 37px;
-  background: #1C4D86;
+  background: $base-color;
   border-radius: 15px;
   cursor: pointer;
 }

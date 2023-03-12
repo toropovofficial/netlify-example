@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .profile {
   min-width: 510px;
   min-height: 257;
@@ -28,7 +30,7 @@
   &__data__item {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #1C4D86;
+    border-bottom: 1px solid $base-color;
     margin-bottom: 10px;
   }
 
