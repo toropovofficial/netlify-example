@@ -1,0 +1,21 @@
+.user {
+  display: flex;
+  align-items: center;
+  min-height: 68px;
+
+  &__avatar {
+    margin-right: 22px;
+  }
+
+  &__info {
+    margin-right: 100px;
+  }
+
+  &__name {
+    margin-bottom: 5px;
+  }
+
+  &__action {
+   margin-right: 22px;
+  }
+}

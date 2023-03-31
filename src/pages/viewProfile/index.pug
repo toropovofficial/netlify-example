@@ -1,20 +1,31 @@
-include ../../components/input/input.pug 
-include ../../components/profileForm/index.pug
+.profile__name Игорь
 
+.profile__data
+  form(action='/viewProfile')
+    .profile__data__item
+      p Почта
+      |  !{ login } 
+    .profile__data__item
+      p Почта
+      |  !{ password } 
+    .profile__data__item
+      p Почта
+      |  !{ phone } 
+    .profile__data__item
+      p Почта
+      |  !{ email } 
+    .profile__data__item
+      p Почта
+      |  !{ first_name } 
+    .profile__data__item
+      p Почта
+      |  !{ second_name } 
 
-section.profile 
-  .profile__avatar
+.profile__actions
+  a.profile__change_data.link(href="/changeProfile") Изменить данные
 
-  .profile__name Игорь
+  a.profile__change_password.link(href="/changePassword") Изменить пароль
 
-  .profile__data
-    +yaProfileForm('disabled')
-
-  .profile__actions
-    a.profile__change_data.link(href="/changeProfile") Изменить данные
-
-    a.profile__change_password.link(href="/changePassword") Изменить пароль
-
-    a.profile__exit.error(href="/login") Выйти
+  a.profile__exit.error(href="/login") Выйти
 
 
