@@ -12,6 +12,6 @@ export default class Icon extends Block {
   }
 
   render() {
-    return this.compile((() => ''), {});
+    return this.compile((() => { return ''; }), {});
   }
 }

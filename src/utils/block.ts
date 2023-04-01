@@ -44,7 +44,7 @@ export default class Block<P extends Record<string, any> = any> {
 
     this.props = this._makePropsProxy(props, this);
 
-    this.eventBus = () => eventBus;
+    this.eventBus = () => { return eventBus; };
 
     this._registerEvents(eventBus);
 

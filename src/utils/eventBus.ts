@@ -26,7 +26,7 @@ export default class EventBus<T> implements IEventBus<T> {
       throw new Error(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter((listener) => listener !== callback);
+    this.listeners[event] = this.listeners[event].filter((listener) => { return listener !== callback; });
   }
 
   emit(event: string, ...args: any): void {
