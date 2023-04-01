@@ -38,6 +38,22 @@ export default class Field extends Block {
               this.element!.querySelector('.error')?.classList.add('hide');
             }
           },
+          focus: (e: Event) => {
+            const { value } = e.target as HTMLInputElement;
+            const { name } = e.target as HTMLInputElement;
+
+            if (value === '' || value === undefined || !name) {
+              return;
+            }
+
+            const res = validation(value, name);
+            if (!res.status) {
+              this.children.error.setProps({ errorMessage: res.message });
+              this.element!.querySelector('.error')?.classList.remove('hide');
+            } else {
+              this.element!.querySelector('.error')?.classList.add('hide');
+            }
+          },
         },
       },
     );
