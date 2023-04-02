@@ -6,6 +6,7 @@ import { changePasswordInit } from './pages/changePassword/index';
 import error500Init from './pages/500/index';
 import error404Init from './pages/404/index';
 import chatInit from './pages/chat/index';
+import { NavIint } from './pages/nav/index';
 
 export const App = () => {
   switch (document.location.pathname) {
@@ -26,7 +27,7 @@ export const App = () => {
     case '/500':
       return error500Init;
     default:
-      return loginInit;
+      return NavIint;
   }
 };
 

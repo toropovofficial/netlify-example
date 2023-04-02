@@ -6,11 +6,11 @@ import Button from '../../components/newButton/index';
 import ErrorMessage from '../../components/error/index';
 import Checkbox from '../../components/checkboxNew/index';
 import { IInputItem } from '../../pages/interfaces/index';
-import initEventSubmit from '../../utils/helpers';
 
 interface IProps {
   isLogin: boolean,
-  list: IInputItem[]
+  list: IInputItem[],
+  events: any
 }
 
 export default class Form extends Block {
@@ -33,8 +33,6 @@ export default class Form extends Block {
     this.children.error = new ErrorMessage({});
 
     this.children.buttonSubmit = new Button({ label: 'Регистрация', type: 'submit' });
-
-    initEventSubmit.call(this);
   }
 
   render() {

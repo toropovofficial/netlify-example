@@ -5,11 +5,11 @@ import Button from '../../components/newButton/index';
 import ErrorMessage from '../../components/error/index';
 import './style.scss';
 import { IInputItem } from '../../pages/interfaces/index';
-import initEventSubmit from '../../utils/helpers';
 
 interface IProps {
   list: IInputItem[]
   changePassword?: boolean
+  events: any
 }
 
 export default class profileForm extends Block {
@@ -27,8 +27,6 @@ export default class profileForm extends Block {
 
     this.children.saveButton = new Button({ label: 'save', type: 'submit' });
     this.children.error = new ErrorMessage({});
-
-    initEventSubmit.call(this);
   }
 
   render() {

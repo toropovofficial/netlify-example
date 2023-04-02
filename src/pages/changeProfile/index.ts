@@ -4,6 +4,7 @@ import ProfileForm from '../../modules/newProfileForm/index';
 import { registrationfields } from '../login/const';
 import './style.scss';
 import { IInputItem } from '../interfaces/index';
+import initEventSubmit from '../../utils/helpers';
 
 interface IProps {
   list: IInputItem[]
@@ -16,7 +17,15 @@ export class Profile extends Block {
 
   init() {
     this.element.classList.add('profile');
-    this.children.form = new ProfileForm({ ...registrationfields });
+    this.children.form = new ProfileForm({
+      ...registrationfields,
+      events: {
+        submit: (e: Event) => {
+          e.preventDefault();
+          initEventSubmit(this.children.form.children);
+        },
+      },
+    });
   }
 
   render() {
