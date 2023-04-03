@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.counter {
+  width: 20px;
+  height: 20px;
+  background: $base-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+}
