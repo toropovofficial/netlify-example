@@ -1,9 +1,11 @@
 import Form from '../../modules/Form/index';
 import Modal from '../../components/modal/modal';
 import { registrationfields } from '../login/const';
-import initEventSubmit from '../../utils/helpers';
+import { initEventSubmit } from '../../utils/helpers';
 import Block from '../../utils/block';
 import template from './index.pug';
+import AuthController from '../../controllers/AuthController';
+import { withStore, store } from '../../utils/Store';
 
 export class Registartion extends Block {
   constructor() {
@@ -12,12 +14,19 @@ export class Registartion extends Block {
 
   init() {
     this.children.form = new Form({
+      label: 'Зарегистрироваться',
       isLogin: false,
       list: registrationfields.list,
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          initEventSubmit(this.children.form.children);
+          const { fields, isValid } = initEventSubmit(this.children.form.children, 'reg');
+          if (isValid) {
+            AuthController.signup(fields);
+          } else {
+            this.children.form.children.error.setProps({ errorMessage: 'Не заполнены обязательные поля' });
+            this.children.form.children.error.element.classList.remove('hide');
+          }
         },
       },
     });
@@ -28,13 +37,4 @@ export class Registartion extends Block {
   }
 }
 
-export default function registrationInit() {
-  const loginFrom = new Registartion();
-  const loginModal = new Modal({ title: 'Вход' });
-
-  if (loginModal.element && loginFrom.element) {
-    document.body.append(loginModal.element);
-    const wrapper = document.querySelector('.modal__wrapper');
-    wrapper?.append(loginFrom.element);
-  }
-}
+export const RegistartionPage = Registartion;

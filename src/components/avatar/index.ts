@@ -1,13 +1,14 @@
 import template from './index.pug';
 import Block from '../../utils/block';
 import './style.scss';
+import { withStore } from '../../utils/Store';
 
 interface IProps {
   src?: string
   alt?: string
 }
 
-export default class Avatar extends Block {
+class Avatar extends Block {
   constructor(props: IProps) {
     super('div', props);
   }
@@ -24,3 +25,9 @@ export default class Avatar extends Block {
     return this.compile(template, this.props);
   }
 }
+
+const Withuser = withStore((state) => {
+  return { ...state.user };
+});
+
+export default Withuser(Avatar);

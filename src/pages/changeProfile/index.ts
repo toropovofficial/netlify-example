@@ -1,28 +1,69 @@
 import template from './index.pug';
 import Block from '../../utils/block';
 import ProfileForm from '../../modules/newProfileForm/index';
-import { registrationfields } from '../login/const';
+import { profileFields } from '../login/const';
 import './style.scss';
-import { IInputItem } from '../interfaces/index';
-import initEventSubmit from '../../utils/helpers';
+import { initEventSubmit } from '../../utils/helpers';
+import ProfileController from '../../controllers/ProfileController';
+import AuthController from '../../controllers/AuthController';
+import Avatar from '../../components/avatar/index';
+import FileUploader from '../../components/FileUploader/index';
+import image from '../../../static/icons/avatar.jpg';
+import Modal from '../../components/modal/modal';
+import { withStore, store } from '../../utils/Store';
 
-interface IProps {
-  list: IInputItem[]
-}
-
-export class Profile extends Block {
-  constructor(props: IProps) {
+class ChangeProfile extends Block {
+  constructor(props: any) {
     super('section', props);
   }
 
   init() {
+    let showModal = false;
     this.element.classList.add('profile');
+    this.children.avatar = new Avatar({
+      src: image,
+      events: {
+        click: () => {
+          showModal = !showModal;
+          this.children.modal.props.showModal = showModal;
+        },
+      },
+    });
+    this.children.modal = new Modal({
+      title: 'Загрузите файл',
+      content: FileUploader,
+      showModal,
+      events: {
+        submit: (e: any) => {
+          e.preventDefault();
+          if (document.getElementById('myUserForm')) {
+            const myUserForm: HTMLFormElement = document.getElementById('myUserForm')!;
+            const form = new FormData(myUserForm);
+
+            ProfileController.updateAvatar(form);
+          }
+        },
+      },
+    });
     this.children.form = new ProfileForm({
-      ...registrationfields,
+      updateProfile: true,
+      ...profileFields,
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          initEventSubmit(this.children.form.children);
+          const { fields, isValid } = initEventSubmit(
+            this.children.form.children,
+            'profile',
+          );
+          if (isValid) {
+            ProfileController.update(fields);
+            AuthController.fetchUser();
+          } else {
+            this.children.form.children.error.setProps({
+              errorMessage: 'Не заполнены обязательные поля',
+            });
+            this.children.form.children.error.element.classList.remove('hide');
+          }
         },
       },
     });
@@ -33,10 +74,8 @@ export class Profile extends Block {
   }
 }
 
-export function changeProfileInit() {
-  const form = new Profile({ ...registrationfields });
+const Withuser = withStore((state) => {
+  return { ...state.user };
+});
 
-  if (form.element) {
-    document.body.append(form.element);
-  }
-}
+export default Withuser(ChangeProfile);

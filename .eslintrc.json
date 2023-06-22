@@ -15,6 +15,10 @@
     "ecmaVersion": 6
   },
   "rules": {
+    "max-classes-per-file": [
+      "error",
+      { "ignoreExpressions": true, "max": 2 }
+    ],
     "max-len": ["error", { "code": 160 }],
     "no-empty-function": "off",
     "eslint @typescript-eslint/no-var-requires": "off",

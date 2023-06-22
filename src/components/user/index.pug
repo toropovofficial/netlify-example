@@ -1,11 +1,24 @@
-.user__avatar
-  #{avatar}
-.user__info 
-  .user__name=name
-  .user__message=message
-.user__action
-  .user__notification
-    img(src="", alt="alt")
-    #{count}
-  .user__settings 
-    img(src="", alt="")
+if isActive
+  .user__avatar
+    #{avatar}
+  .user__info 
+    .user__name=title
+  .Burger__btn
+    #{Burger}
+  #{actions}
+else 
+  .user__avatar
+    #{avatar}
+  .user__info 
+    if data 
+      .user__name=data.display_name
+    else 
+      .user__name user
+    .user__message=message
+  .user__action
+    .user__notification
+      #{notification}
+      .user__counter
+        #{count}
+    .user__settings.pointer 
+      #{settingsIcon}

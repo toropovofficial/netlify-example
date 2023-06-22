@@ -1,9 +1,12 @@
 import Form from '../../modules/Form/index';
 import Modal from '../../components/modal/modal';
 import { loginFields } from './const';
-import initEventSubmit from '../../utils/helpers';
+import { initEventSubmit } from '../../utils/helpers';
 import Block from '../../utils/block';
 import template from './index.pug';
+import AuthController from '../../controllers/AuthController';
+
+const listItem: any  = []
 
 export class Login extends Block {
   constructor() {
@@ -12,12 +15,19 @@ export class Login extends Block {
 
   init() {
     this.children.form = new Form({
+      label: 'Авторизоваться',
       isLogin: true,
       list: loginFields.list,
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          initEventSubmit(this.children.form.children);
+          const { fields, isValid } = initEventSubmit(this.children.form.children, 'login');
+          if (isValid) {
+            AuthController.signin(fields);
+          } else {
+            this.children.form.children.error.setProps({ errorMessage: 'Не заполнены обязательные поля' });
+            this.children.form.children.error.element.classList.remove('hide');
+          }
         },
       },
     });
@@ -28,14 +38,9 @@ export class Login extends Block {
   }
 }
 
-export default function loginInit() {
-  const loginFrom = new Login();
-
-  const loginModal = new Modal({ title: 'Вход' });
-
-  if (loginModal.element && loginFrom.element) {
-    document.body.append(loginModal.element);
-    const wrapper = document.querySelector('.modal__wrapper');
-    wrapper?.append(loginFrom.element);
+export default class LoginPage {
+  getContent() {
+    const loginModal = new Modal({ title: 'Вход', content: Login, showModal: true });
+    return loginModal.element;
   }
 }

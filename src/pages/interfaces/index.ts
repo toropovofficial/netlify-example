@@ -12,4 +12,12 @@ interface IChatInfo {
   time: string
 }
 
-export { IInputItem, IChatInfo };
+interface IRegistartionFields {
+  first_name: string
+  second_name: string
+  login: string
+  email: string
+  password: string
+  phone: string
+}
+export { IInputItem, IChatInfo, IRegistartionFields };

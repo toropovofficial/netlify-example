@@ -1,0 +1,11 @@
+- var title = 13108
+each val in chats
+  .chat(id=val.id)
+    .chat__image
+      #{avatar}
+    .chat__user
+      .chat__name=val.title
+      .chat__message=val.last_message
+    .chat__info 
+      =val.unread_count
+      =val.created_by

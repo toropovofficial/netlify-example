@@ -4,19 +4,44 @@ import ProfileForm from '../../modules/newProfileForm/index';
 import { passwordFields } from '../login/const';
 import './style.scss';
 import { IInputItem } from '../interfaces/index';
+import { initEventSubmit } from '../../utils/helpers';
+import { store } from '../../utils/Store';
+import ProfileController from '../../controllers/ProfileController';
+import AuthController from '../../controllers/AuthController';
 
 interface IProps {
-  list: IInputItem[]
+  list: IInputItem[];
 }
 
-export class Profile extends Block {
+export class ChangePassword extends Block {
   constructor(props: IProps) {
     super('section', props);
   }
 
   init(): void {
+    const { user } = store.getState();
+
     this.element.classList.add('profile');
-    this.children.form = new ProfileForm({ ...passwordFields, changePassword: true });
+    this.children.form = new ProfileForm({
+      ...passwordFields,
+      changePassword: true,
+      events: {
+        submit: (e: Event) => {
+          e.preventDefault();
+          const { fields, isValid } = initEventSubmit(
+            this.children.form.children,
+            'password',
+          );
+          if (isValid) {
+            ProfileController.changePassword(fields);
+            AuthController.fetchUser();
+          } else {
+            this.children.form.children.error.setProps({ errorMessage: 'Не заполнены обязательные поля' });
+            this.children.form.children.error.element.classList.remove('hide');
+          }
+        },
+      },
+    });
   }
 
   render() {
@@ -24,10 +49,9 @@ export class Profile extends Block {
   }
 }
 
-export function changePasswordInit() {
-  const form = new Profile({ ...passwordFields });
-
-  if (form.element) {
-    document.body.append(form.element);
+export default class ChangePasswordPage {
+  getContent() {
+    const changePassword = new ChangePassword({ ...passwordFields });
+    return changePassword.element;
   }
 }

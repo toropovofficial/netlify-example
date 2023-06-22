@@ -114,7 +114,9 @@ export default class Block<P extends Record<string, any> = any> {
   componentDidMount() {}
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDU);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+
+    Object.values(this.children).forEach((child) => { return child.dispatchComponentDidMount(); });
   }
 
   _componentDidUpdate(oldProps: Record<string, unknown>, newProps: Record<string, unknown>) {
@@ -125,11 +127,11 @@ export default class Block<P extends Record<string, any> = any> {
   }
 
   componentDidUpdate(oldProps: Record<string, unknown>, newProps: Record<string, unknown>) {
-    if (oldProps && newProps) {
-      return true;
-    }
-
-    return false;
+    // console.log(oldProps, newProps)
+    // if (newProps === 'Login already exists') {
+    //   debugger
+    // }
+    return true;
   }
 
   setProps = (nextProps: Record<string, unknown>) => {

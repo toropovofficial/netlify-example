@@ -6,14 +6,17 @@ import Button from '../../components/newButton/index';
 import ErrorMessage from '../../components/error/index';
 import Checkbox from '../../components/checkboxNew/index';
 import { IInputItem } from '../../pages/interfaces/index';
+import Link from '../../components/link/index';
+import { withStore, store } from '../../utils/Store';
 
 interface IProps {
+  label: string
   isLogin: boolean,
   list: IInputItem[],
   events: any
 }
 
-export default class Form extends Block {
+class Form extends Block {
   constructor(props: IProps) {
     super('form', props);
   }
@@ -32,10 +35,32 @@ export default class Form extends Block {
 
     this.children.error = new ErrorMessage({});
 
-    this.children.buttonSubmit = new Button({ label: 'Регистрация', type: 'submit' });
+    this.children.buttonSubmit = new Button({ label: this.props.label, type: 'submit' });
+
+    this.children.loginLink = new Link({
+      text: 'Войти',
+      events: {
+        click: () => {
+          $router.go('/login');
+        },
+      },
+    });
+
+    this.children.RegistrationLink = new Link({
+      text: 'Создать аккаунт',
+      events: {
+        click: () => {
+          $router.go('/sign-up');
+        },
+      },
+    });
   }
 
   render() {
     return this.compile(template, this.props);
   }
 }
+
+const withForm = withStore((state) => { return { ...state.user }; });
+
+export default withForm(Form)

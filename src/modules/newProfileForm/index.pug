@@ -1,15 +1,25 @@
 if changePassword
-   |  !{ oldpassword }
+   |  !{ oldPassword }
    |  !{ newPassword }
    |  !{ repeatPassword }
    #{saveButton}  
    #{error}
+else if updateProfile
+  |  !{ email }
+  |  !{ login }
+  |  !{ first_name } 
+  |  !{ second_name }
+  |  !{ display_name }
+  |  !{ phone }  
+  #{saveButton}  
+  #{error}
 else 
   |  !{ login }
   |  !{ password }
   |  !{ phone } 
   |  !{ email } 
   |  !{ first_name } 
+  |  !{ display_name } 
   |  !{ second_name }
   #{saveButton}  
   #{error}

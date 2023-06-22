@@ -1,0 +1,21 @@
+.breadCrumbs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 64px;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background: #d3d3d3;
+
+  .image {
+    width: 90%;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
+}

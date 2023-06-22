@@ -7,6 +7,7 @@ const phoneRegex = /^\+?\d{10,15}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const nameRegex = /^[A-ZА-ЯЁ][a-zA-Zа-яёЁ-]*$/;
 
+
 function checkLogin(value: string) {
   if (!specialSymbols.test(value)) {
     return { status: false, message: 'Не должно быть спецсимволов и пробелов и нужны латинские символы' };
@@ -65,7 +66,7 @@ function validation(value:string, name: string) {
       return checkLogin(value);
     case name === 'password':
       return checkPassword(value);
-    case name === 'oldpassword':
+    case name === 'oldPassword':
       return checkPassword(value);
     case name === 'newPassword':
       return checkPassword(value);
