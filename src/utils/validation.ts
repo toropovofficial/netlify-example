@@ -7,7 +7,6 @@ const phoneRegex = /^\+?\d{10,15}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const nameRegex = /^[A-ZА-ЯЁ][a-zA-Zа-яёЁ-]*$/;
 
-
 function checkLogin(value: string) {
   if (!specialSymbols.test(value)) {
     return { status: false, message: 'Не должно быть спецсимволов и пробелов и нужны латинские символы' };
@@ -62,26 +61,26 @@ function checkName(value: string) {
 
 function validation(value:string, name: string) {
   switch (true) {
-    case name === 'login':
-      return checkLogin(value);
-    case name === 'password':
-      return checkPassword(value);
-    case name === 'oldPassword':
-      return checkPassword(value);
-    case name === 'newPassword':
-      return checkPassword(value);
-    case name === 'repeatPassword':
-      return checkPassword(value);
-    case name === 'phone':
-      return checkPhone(value);
-    case name === 'email':
-      return checkEmail(value);
-    case name === 'first_name':
-      return checkName(value);
-    case name === 'second_name':
-      return checkName(value);
-    default:
-      return { status: true, message: '' };
+  case name === 'login':
+    return checkLogin(value);
+  case name === 'password':
+    return checkPassword(value);
+  case name === 'oldPassword':
+    return checkPassword(value);
+  case name === 'newPassword':
+    return checkPassword(value);
+  case name === 'repeatPassword':
+    return checkPassword(value);
+  case name === 'phone':
+    return checkPhone(value);
+  case name === 'email':
+    return checkEmail(value);
+  case name === 'first_name':
+    return checkName(value);
+  case name === 'second_name':
+    return checkName(value);
+  default:
+    return { status: true, message: '' };
   }
 }
 

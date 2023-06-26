@@ -1,6 +1,6 @@
 import { ProfileAPI, ProfileData } from '../api/ProfileApi';
 import { store } from '../utils/Store';
-import { IUser } from '../utils/types'
+import { IUser } from '../utils/interfaces';
 
 class ProfileController {
   private api: any;
@@ -35,7 +35,7 @@ class ProfileController {
         store.set('user.data', x);
       })
       .catch((err: any) => {
-        throw new Error(err)
+        throw new Error(err);
       });
   }
 

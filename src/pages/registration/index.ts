@@ -20,9 +20,9 @@ export class Registartion extends Block {
           e.preventDefault();
           const result = initEventSubmit(this.children.form.children, 'reg');
           if (!result) {
-            return
+            return;
           }
-          const { fields, isValid } = result
+          const { fields, isValid } = result;
           if (isValid) {
             AuthController.signup(fields);
           } else {

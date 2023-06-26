@@ -1,5 +1,5 @@
 import { ChatAPI, IAdded } from '../api/ChatApi';
-import { IChat } from '../utils/types'
+import { IChat } from '../utils/interfaces';
 import { store } from '../utils/Store';
 
 interface IToken {
@@ -21,7 +21,7 @@ class ChatController {
     this.api
       .createChat(data)
       .then(async () => {
-        await this.getChats()
+        await this.getChats();
       })
       .catch(() => {});
   }
@@ -36,17 +36,17 @@ class ChatController {
 
   async connectionChat(id: number | string) {
     this.api.connectionChat(id)
-      .then((res: IToken )=> {
-        store.set('token', res.token)
+      .then((res: IToken) => {
+        store.set('token', res.token);
       })
       .catch(() => {});
   }
 
   async addUserToChat(data: IAdded) {
     this.api.add(data)
-    .catch((x: any) => {
-      throw new Error(x)
-    })
+      .catch((x: any) => {
+        throw new Error(x);
+      });
   }
 }
 

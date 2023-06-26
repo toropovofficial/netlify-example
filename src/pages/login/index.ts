@@ -21,9 +21,9 @@ export class Login extends Block {
           e.preventDefault();
           const result = initEventSubmit(this.children.form.children, 'login');
           if (!result) {
-            return
+            return;
           }
-          const { fields, isValid } = result
+          const { fields, isValid } = result;
           if (isValid) {
             AuthController.signin(fields);
           } else {
@@ -42,7 +42,7 @@ export class Login extends Block {
 
 export default class LoginPage {
   getContent() {
-    const loginModal = new Modal({ title: 'Вход', content: Login });
+    const loginModal = new Modal({ title: 'Вход', Content: Login });
     return loginModal.element;
   }
 }

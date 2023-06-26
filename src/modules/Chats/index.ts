@@ -1,7 +1,7 @@
 import template from './index.pug';
 import Block from '../../utils/block';
 import { withStore } from '../../utils/Store';
-import image from "../../../static/icons/avatar.jpg";
+import image from '../../../static/icons/avatar.jpg';
 import './style.scss';
 
 class Chats extends Block {
@@ -14,12 +14,11 @@ class Chats extends Block {
   }
 
   render() {
-    return this.compile(template, {...this.props, src: image});
+    return this.compile(template, { ...this.props, src: image });
   }
 }
 
 const WithChats = withStore((state) => {
-  console.log(state.chats)
   return { chats: state.chats };
 });
 

@@ -1,7 +1,10 @@
-import Route from "./Route";
+/* eslint-disable no-constructor-return */
+import Route from './Route';
 
 export default class Router {
   routes: any;
+
+  __instance: any;
 
   history: any;
 
@@ -9,8 +12,10 @@ export default class Router {
 
   _rootQuery: any;
 
+  static __instance: any;
+
   constructor(rootQuery: any) {
-    if (Router.__instance) {
+    if (Router.__instance!) {
       return Router.__instance;
     }
 
@@ -55,7 +60,7 @@ export default class Router {
   }
 
   go(pathname: any) {
-    this.history.pushState({}, "", pathname);
+    this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
 

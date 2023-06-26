@@ -23,13 +23,13 @@ class ChangeProfile extends Block {
       src: image,
       events: {
         click: () => {
-          store.set('showModal', true)
+          store.set('showModal', true);
         },
       },
     });
     this.children.modal = new Modal({
       title: 'Загрузите файл',
-      content: FileUploader,
+      Content: FileUploader,
       events: {
         submit: (e: Event) => {
           e.preventDefault();

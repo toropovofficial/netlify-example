@@ -2,7 +2,6 @@ import template from './index.pug';
 import Block from '../../utils/block';
 import Avatar from '../avatar/index';
 import Counter from '../counter/index';
-import Link from '../link/index';
 import Icon from '../icon/index';
 import './style.scss';
 import image from '../../../static/icons/admin.jpg';
@@ -10,7 +9,6 @@ import settings from '../../../static/icons/settings.jpg';
 import notification from '../../../static/icons/notification.jpg';
 import points from '../../../static/icons/points.png';
 import plus from '../../../static/icons/plus.png';
-import Burger from '../Burger/index';
 import { withStore } from '../../utils/Store';
 
 interface IProps {
@@ -19,7 +17,6 @@ interface IProps {
   message: string
   count: number
   isActive?: boolean
-  showBurger: boolean
 }
 
 class User extends Block {
@@ -31,13 +28,6 @@ class User extends Block {
     this.element.classList.add('user');
     if (this.props.isActive) {
       this.element.classList.add('active-user');
-      this.children.Burger = new Burger({
-        events: {
-          click: () => {
-            console.log('open');
-          },
-        },
-      });
     }
     this.children.avatar = new Avatar({ src: image });
     this.children.count = new Counter({ count: this.props.count });

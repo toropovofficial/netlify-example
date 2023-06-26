@@ -15,8 +15,6 @@ export class ChatAPI extends BaseAPI {
   }
 
   createChat(data: ICreate) {
-    console.log(data)
-    debugger
     return this.http.post('', data);
   }
 
@@ -29,7 +27,7 @@ export class ChatAPI extends BaseAPI {
   }
 
   add(data: IAdded) {
-    return this.http.put('/users', data)
+    return this.http.put('/users', data);
   }
 
   create = undefined;

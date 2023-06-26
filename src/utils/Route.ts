@@ -35,7 +35,7 @@ export default class Route {
   leave() {
     const root = document.querySelector(this._props.rootQuery);
 
-    root.innerText = "";
+    root.innerText = '';
   }
 
   match(pathname: string) {

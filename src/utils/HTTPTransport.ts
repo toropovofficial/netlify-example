@@ -78,13 +78,13 @@ export default class HTTPTransport {
       };
 
       xhr.onabort = () => {
-        return reject({ reason: 'abort' });
+        return reject(new Error('abort'));
       };
       xhr.onerror = () => {
-        return reject({ reason: 'network error' });
+        return reject(new Error('network error'));
       };
       xhr.ontimeout = () => {
-        return reject({ reason: 'timeout' });
+        return reject(new Error('timeout'));
       };
 
       if (!url.includes('avatar')) {

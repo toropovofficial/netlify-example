@@ -7,7 +7,7 @@ import ErrorMessage from '../../components/error/index';
 import Checkbox from '../../components/checkboxNew/index';
 import { IInputItem } from '../../pages/interfaces/index';
 import Link from '../../components/link/index';
-import { withStore, } from '../../utils/Store';
+import { withStore } from '../../utils/Store';
 
 interface IProps {
   label: string
@@ -63,4 +63,4 @@ class Form extends Block {
 
 const withForm = withStore((state) => { return { ...state.user }; });
 
-export default withForm(Form)
+export default withForm(Form);

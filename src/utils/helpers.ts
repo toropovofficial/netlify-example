@@ -1,44 +1,45 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-continue */
-import { IRegistartionFields } from "../pages/interfaces/index";
-import validation from "./validation";
+import { IRegistartionFields } from '../pages/interfaces/index';
+import validation from './validation';
 
 export function initEventSubmit(children: any, isLogin?: string) {
   let fields: any = {};
-  if (isLogin === "login") {
+  if (isLogin === 'login') {
     fields = {
-      login: "",
-      password: "",
+      login: '',
+      password: '',
     };
   }
 
-  if (isLogin === "password") {
+  if (isLogin === 'password') {
     fields = {
-      oldPassword: "",
-      newPassword: "",
+      oldPassword: '',
+      newPassword: '',
     };
   }
 
-  if (isLogin === "reg") {
+  if (isLogin === 'reg') {
     fields = {
-      first_name: "",
-      second_name: "",
-      login: "",
-      email: "",
-      password: "",
-      phone: "",
+      first_name: '',
+      second_name: '',
+      login: '',
+      email: '',
+      password: '',
+      phone: '',
     };
   }
 
-  if (isLogin === "profile") {
+  if (isLogin === 'profile') {
     fields = {
-      email: "",
-      login: "",
-      first_name: "",
-      second_name: "",
-      display_name: "",
-      phone: "",
+      email: '',
+      login: '',
+      first_name: '',
+      second_name: '',
+      display_name: '',
+      phone: '',
     };
   }
 
@@ -47,14 +48,14 @@ export function initEventSubmit(children: any, isLogin?: string) {
   }
 
   Object.keys(children).forEach((key) => {
-    const input = children[key].element.querySelector("input");
+    const input = children[key].element.querySelector('input');
     if (input && fields[key as keyof IRegistartionFields] !== undefined) {
       fields[key as keyof IRegistartionFields] = input.value;
     }
   });
 
   const isValid = Object.keys(fields).every((item) => {
-    const value = fields[item as keyof IRegistartionFields] || "";
+    const value = fields[item as keyof IRegistartionFields] || '';
     return validation(value, item)?.status;
   });
 
@@ -67,10 +68,10 @@ type PlainObject<T = any> = {
 
 function isPlainObject(value: unknown): value is PlainObject {
   return (
-    typeof value === "object" &&
-    value !== null &&
-    value.constructor === Object &&
-    Object.prototype.toString.call(value) === "[object Object]"
+    typeof value === 'object'
+    && value !== null
+    && value.constructor === Object
+    && Object.prototype.toString.call(value) === '[object Object]'
   );
 }
 
@@ -131,17 +132,17 @@ function merge(lhs: Indexed, rhs: Indexed): Indexed {
 export function set(
   object: Indexed | unknown,
   path: string,
-  value: unknown
+  value: unknown,
 ): Indexed | unknown {
-  if (typeof object !== "object" || object === null) {
+  if (typeof object !== 'object' || object === null) {
     return object;
   }
 
-  if (typeof path !== "string") {
-    throw new Error("path must be string");
+  if (typeof path !== 'string') {
+    throw new Error('path must be string');
   }
 
-  const result = path.split(".").reduceRight<Indexed>((acc, key) => {
+  const result = path.split('.').reduceRight<Indexed>((acc, key) => {
     return {
       [key]: acc,
     };

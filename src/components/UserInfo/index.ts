@@ -5,7 +5,7 @@ import Counter from '../counter/index';
 import Timer from '../timer/index';
 import './style.scss';
 import image from '../../../static/icons/avatar.jpg';
-import { withStore, store } from '../../utils/Store';
+import { withStore } from '../../utils/Store';
 
 interface IProps {
   chat: {
@@ -24,7 +24,6 @@ class UserInfo extends Block {
   }
 
   init() {
-
     if (this.props.id === this.props.activeChat.id) {
       this.element.classList.add('active');
     }
@@ -42,7 +41,7 @@ class UserInfo extends Block {
       this.element.classList.remove('active');
     }
 
-    return true
+    return true;
   }
 
   render() {

@@ -2,7 +2,7 @@ import template from './index.pug';
 import Block from '../../utils/block';
 import add from '../../../static/icons/add.jpg';
 import remove from '../../../static/icons/remove.jpg';
-import Icon from "../icon/index";
+import Icon from '../icon/index';
 import './style.scss';
 
 interface IProps {
@@ -39,7 +39,7 @@ export default class Actions extends Block {
       this.element.classList.add('hide');
     }
 
-    return true
+    return true;
   }
 
   render() {

@@ -19,8 +19,6 @@ export class ChangePassword extends Block {
   }
 
   init(): void {
-    const { user } = store.getState();
-
     this.element.classList.add('profile');
     this.children.form = new ProfileForm({
       ...passwordFields,
@@ -33,7 +31,7 @@ export class ChangePassword extends Block {
             'password',
           );
           if (result) {
-            const { fields, isValid } = result
+            const { fields, isValid } = result;
             if (isValid) {
               ProfileController.changePassword(fields);
               AuthController.fetchUser();

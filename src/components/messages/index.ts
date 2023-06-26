@@ -19,7 +19,7 @@ class Messages extends Block {
 }
 
 const WithMessages = withStore((state) => {
-    return { messages: state.messages, id: state.user?.data?.id };
-  });
-  
+  return { messages: state.messages, id: state.user?.data?.id };
+});
+
 export default WithMessages(Messages);

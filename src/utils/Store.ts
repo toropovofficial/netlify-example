@@ -1,8 +1,7 @@
 import { User } from '../api/AuthApi';
-import Block from './block';
 import EventBus from './eventBus';
 import { set } from './helpers';
-import { IMessage, IChat, IActiveChat } from "./types";
+import { IMessage, IChat, IActiveChat } from './interfaces';
 
 export enum StoreEvents {
   Updated = 'Updated',
@@ -13,13 +12,13 @@ type State = {
     data: null | User;
     isLoading: boolean;
     hasError: boolean;
-  },
-  activeChat: IActiveChat
-  chats: IChat[]
-  token: string
-  messages: IMessage[]
-  showModal: boolean
-}
+  };
+  activeChat: IActiveChat;
+  chats: IChat[];
+  token: string;
+  messages: IMessage[];
+  showModal: boolean;
+};
 
 const initialState: State = {
   user: {
@@ -47,16 +46,20 @@ const initialState: State = {
       },
     },
     title: '',
-    unread_count: 0
+    unread_count: 0,
   },
   chats: [],
   messages: [],
   token: '',
-  showModal: false
+  showModal: false,
 };
 
 class Store extends EventBus {
   private state = initialState;
+
+  constructor() {
+    super('');
+  }
 
   public set(keypath: string, value: unknown) {
     set(this.state, keypath, value);
@@ -87,7 +90,6 @@ export const withStore = (mapStateToProps: (state: State) => any) => {
         super({ ...props, ...mappedState });
 
         store.on(StoreEvents.Updated, (newState: any) => {
-
           const newMappedState = mapStateToProps(newState);
           this.setProps(newMappedState);
         });
@@ -95,6 +97,5 @@ export const withStore = (mapStateToProps: (state: State) => any) => {
     };
   };
 };
-
 
 export { store };

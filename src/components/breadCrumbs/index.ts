@@ -3,7 +3,7 @@ import Block from '../../utils/block';
 import './style.scss';
 import Icon from '../icon/index';
 import image from '../../../static/icons/leftArrow.png';
-import { withStore, } from '../../utils/Store';
+import { withStore } from '../../utils/Store';
 
 interface IProps {
   text?: string;
@@ -18,7 +18,7 @@ class BreadCrumbs extends Block {
   }
 
   init() {
-    this.element.classList.add('breadCrumbs');
+    this.element.classList.add('breadcrumbs');
 
     this.children.link = new Icon({
       src: image,
