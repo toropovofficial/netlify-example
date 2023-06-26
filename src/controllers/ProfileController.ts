@@ -1,5 +1,6 @@
 import { ProfileAPI, ProfileData } from '../api/ProfileApi';
 import { store } from '../utils/Store';
+import { IUser } from '../utils/types'
 
 class ProfileController {
   private api: any;
@@ -11,7 +12,7 @@ class ProfileController {
   async update(data: ProfileData) {
     this.api
       .updateProfile(data)
-      .then(async (x) => {
+      .then(async (x: IUser) => {
         await this.fetchUser(x.id);
         $router.go('/profile');
       })
@@ -30,13 +31,11 @@ class ProfileController {
   async updateAvatar(data: any) {
     this.api
       .updateAvatar(data)
-      .then(async (x) => {
+      .then(async (x: IUser) => {
         store.set('user.data', x);
-        // await ResourcesController.getAvatar(x.avatar);
       })
-      .catch((y) => {
-        console.log(y);
-        debugger;
+      .catch((err: any) => {
+        throw new Error(err)
       });
   }
 
@@ -44,7 +43,7 @@ class ProfileController {
     store.set('user.isLoading', true);
     await this.api
       .getUser(id)
-      .then((user) => {
+      .then((user: IUser) => {
         store.set('user.data', user);
       })
       .finally(() => {

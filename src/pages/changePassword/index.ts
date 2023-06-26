@@ -28,16 +28,19 @@ export class ChangePassword extends Block {
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          const { fields, isValid } = initEventSubmit(
+          const result = initEventSubmit(
             this.children.form.children,
             'password',
           );
-          if (isValid) {
-            ProfileController.changePassword(fields);
-            AuthController.fetchUser();
-          } else {
-            this.children.form.children.error.setProps({ errorMessage: 'Не заполнены обязательные поля' });
-            this.children.form.children.error.element.classList.remove('hide');
+          if (result) {
+            const { fields, isValid } = result
+            if (isValid) {
+              ProfileController.changePassword(fields);
+              AuthController.fetchUser();
+            } else {
+              this.children.form.children.error.setProps({ errorMessage: 'Не заполнены обязательные поля' });
+              this.children.form.children.error.element.classList.remove('hide');
+            }
           }
         },
       },

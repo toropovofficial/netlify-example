@@ -1,10 +1,17 @@
-.chat {
+.item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
   max-width: 310px;
   min-height: 71px;
   border-top: 1px solid #EAEAEA;
   background: #F5F5F5;
+
+  &__data {
+    display: flex;
+    align-items: center;
+  }
 
   &__image {
     margin-right: 26px;
@@ -18,18 +25,33 @@
     margin-bottom: 4px;
   }
 
-  &__user {
-    margin-right: 114px;
-  }
-
   &__message {
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     color: #999;
   }
+
+  img {
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+  }
 }
 
 .active {
   background: purple;
+}
+
+
+.unread__messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  color: white;
+  background: var(--blue, #1C4D86);
+  margin-top: 5px;
 }

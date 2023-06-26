@@ -1,5 +1,6 @@
 import { AuthAPI, SignupData, SigninData } from '../api/AuthApi';
 import { store } from '../utils/Store';
+import ChatController from "./ChatController";
 
 class AuthController {
   private api: AuthAPI;
@@ -10,8 +11,10 @@ class AuthController {
 
   signup(data: SignupData) {
     this.api.signup(data)
-      .then((x) => {
-        $router.go('/profile');
+      .then(async () => {
+        await ChatController.getChats()
+        $router.go('/messenger');
+        store.set('showModal', false)
       })
       .catch((error) => {
         store.set('user.hasError', true);
@@ -23,10 +26,13 @@ class AuthController {
     this.api.singin(data)
       .then(async () => {
         await this.fetchUser();
-        $router.go('/profile');
+        await ChatController.getChats()
+        $router.go('/messenger');
+        store.set('showModal', false)
       })
-      .catch(x => {
-        // console.log(x)
+      .catch((error) => {
+        store.set('user.hasError', true);
+        store.set('user.errorMessage', error?.reason);
       });
   }
 
@@ -34,9 +40,9 @@ class AuthController {
     this.api.logout()
       .then(() => {
         store.set('user', null);
+        store.set('showModal', true)
         $router.go('/login');
       })
-      .catch(console.log);
   }
 
   async fetchUser() {

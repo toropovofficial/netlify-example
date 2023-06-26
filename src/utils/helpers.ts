@@ -3,7 +3,6 @@
 /* eslint-disable no-continue */
 import { IRegistartionFields } from "../pages/interfaces/index";
 import validation from "./validation";
-import AuthController from "../controllers/AuthController";
 
 export function initEventSubmit(children: any, isLogin?: string) {
   let fields: any = {};
@@ -59,7 +58,6 @@ export function initEventSubmit(children: any, isLogin?: string) {
     return validation(value, item)?.status;
   });
 
-  const errorBlock = children.error.element;
   return { fields, isValid };
 }
 

@@ -11,6 +11,7 @@ import './utils/HTTPTransport';
 import Router from './utils/Router';
 import AuthController from './controllers/AuthController';
 import ChatController from './controllers/ChatController';
+import { store } from "./utils/Store.ts";
 
 const initApp = async () => {
   const router = new Router('#root');
@@ -48,8 +49,7 @@ const initApp = async () => {
         break;
     }
   } catch (error) {
-    console.log(error);
-    debugger;
+    store.set('showModal', true)
     router.go('/login');
   }
 };

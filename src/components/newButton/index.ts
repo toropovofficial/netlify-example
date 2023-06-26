@@ -5,6 +5,7 @@ import './style.scss';
 interface IProps {
   label: string
   type?: string
+  click?: () => void
 }
 
 export default class Button extends Block {

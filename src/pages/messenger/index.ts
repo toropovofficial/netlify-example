@@ -2,15 +2,16 @@ import template from './index.pug';
 import Block from '../../utils/block';
 import User from '../../components/user/index';
 import Tabs from '../../modules/tabs/index';
-import Chat from '../../components/chat/index';
+import Chat from '../../modules/Chat/index';
 import Search from '../../components/search/index';
-import chats from './const';
 import Actions from '../../components/Actions/index';
 import Action from '../../components/Action/index';
 import { store } from '../../utils/Store';
 import Modal from '../../components/modal/modal';
 import ChatsList from '../../modules/Chats/index';
+import ChatController from "../../controllers/ChatController";
 import './style.scss';
+import { IActiveChat } from "../../utils/types";
 
 export default class MessengerPage extends Block {
   constructor() {
@@ -22,16 +23,23 @@ export default class MessengerPage extends Block {
       this.element.classList.add('chats');
     }
     const { chats } = store.state;
-    let activeChat = 1;
+    let activeChat: IActiveChat | null = null;
 
-    let showActions = false;
-    let showModal = false;
-    this.children.chats = [];
+    let showActionsModal = false
+    let actionsModalTitle = 'Добавить чат'
 
     this.children.user = new User({
       name: 'alex',
-      message: '123',
+      message: 'Онлайн',
       count: 4,
+      events: {
+        click: (e: Event) => {
+          const target = e.target as HTMLFormElement
+          if (target.tagName === 'IMG' && target.parentElement?.parentElement?.classList.contains('add__btn')) {
+            store.set('showModal', true)
+          }
+        }
+      }
     });
 
     this.children.tabs = new Tabs();
@@ -41,67 +49,94 @@ export default class MessengerPage extends Block {
     this.children.chats = new ChatsList({
       chats,
       events: {
-        click: (e) => {
-          const id = e.target.getAttribute('id');
-          const { chats } = store.state;
-          activeChat = chats.find((item) => { return item.id === +id; });
-          this.children.activeUserInfo.setProps({ ...activeChat });
-        },
-      },
-    });
+        click: async (e: Event) => {
+          const target = e.target as HTMLInputElement 
+          const id = target.getAttribute('id');
 
-    this.children.actions = new Actions({
-      showActions,
-      events: {
-        click: (e) => {
-          showModal = !showModal;
-          this.children.modal.setProps({ showModal: !showModal });
+          if (!id) {
+            return
+          }
+
+          const { chats } = store.state;
+          activeChat = chats.find((item: IActiveChat) => { return item.id === + id; });
+          if (activeChat) {
+            store.set('activeChat', activeChat)
+            await ChatController.connectionChat(activeChat.id)
+          }
         },
       },
     });
 
     this.children.modal = new Modal({
-      title: 'Добавить пользователя',
+      title: actionsModalTitle,
       content: Action,
-      showModal,
       events: {
-        submit: (e) => {
-          e.preventDefault();
-          const formData = new FormData(e.target);
+        submit: (e: Event) => {
+          const target = e.target as HTMLFormElement
+          const formData = new FormData(target);
           const name = formData.get('user-name');
+          ChatController.addUserToChat({
+            users: [
+              name
+            ],
+            chatId: store.state.activeChat.id
+          })
         },
       },
     });
 
-    // chats.forEach((chat, id) => {
-    //   this.children[`chat${chat.id}`] = new Chat({
-    //     chat,
-    //     events: {
-    //       click: (e) => {
-    //         activeChat = chat;
-    //         store.set(
-    //           'activeChat',
-    //           chat,
-    //         );
-    //       },
-    //     },
-    //   });
-    // });
+    this.children.chatModal = new Modal({
+      title: 'Добавить чат',
+      content: Action,
+      events: {
+        submit: (e: Event) => {
+          e.preventDefault();
+          const target = e.target as HTMLFormElement
+          const formData = new FormData(target);
+          const name = formData.get('user-name');
+          if (name && typeof name === 'string') {
+            ChatController.create({title: name})
+          }
+        },
+      },
+    });
+
+    this.children.actionsModal = new Actions({
+      show: showActionsModal, 
+      events: {
+        click: (e: Event) => {
+          const target = e.target as HTMLInputElement
+          if (target.classList.contains('add') || target.parentElement?.parentElement?.classList.contains('add')) {
+            store.set('showModal', true)
+            actionsModalTitle = 'Добавить пользователя'
+
+            this.children.chatModal.setProps({title: actionsModalTitle});
+          } else {
+            store.set('showModal', true)
+            actionsModalTitle = 'Удалить пользователя'
+            this.children.chatModal.setProps({title: actionsModalTitle});
+          }
+          showActionsModal = !showActionsModal
+          this.children.actionsModal.setProps({show: showActionsModal});
+        }
+      }
+    })
+
+    this.children.chat = new Chat({})
 
     this.children.activeUserInfo = new User({
-      title: activeChat.title,
-      message: '123',
+      title: (activeChat as unknown as IActiveChat).title,
+      message: '',
       count: 4,
       isActive: true,
       events: {
-        click: (e) => {
-          const { target } = e;
+        click: (e: Event) => {
+          const target = e.target as HTMLFormElement
           if (
-            target.classList.contains('burger')
-            || target.tagName === 'SPAN'
+            target.tagName === 'IMG' && !target.parentElement?.classList.contains('avatar')
           ) {
-            showActions = !showActions;
-            this.children.actions.setProps({ showActions });
+            showActionsModal = !showActionsModal;
+            this.children.actionsModal.setProps({show: showActionsModal});
           }
         },
       },
@@ -109,34 +144,6 @@ export default class MessengerPage extends Block {
   }
 
   render() {
-    return this.compile(template, this.chats);
+    return this.compile(template, this.props);
   }
 }
-
-// export default class Chats {
-//   getContent() {
-//     const chatPage = new ChatPage();
-//     const aside = chatPage.element.querySelector('aside');
-//     const user = new User({ name: 'alex', message: '123', count: 4 });
-//     const tabs = new Tabs();
-//     const search = new Search({ placeholder: 'Поиск' });
-//     if (
-//       chatPage.element
-//       && user.element
-//       && tabs.element
-//       && search.element
-//       && aside
-//     ) {
-//       aside.append(user.element);
-//       aside.append(tabs.element);
-//       aside.append(search.element);
-//       chats.forEach((item) => {
-//         const counter = new Chat(item);
-//         if (counter.element) {
-//           aside.append(counter.element);
-//         }
-//       });
-//     }
-//     return chatPage.element;
-//   }
-// }

@@ -18,26 +18,23 @@ class ChangeProfile extends Block {
   }
 
   init() {
-    let showModal = false;
     this.element.classList.add('profile');
     this.children.avatar = new Avatar({
       src: image,
       events: {
         click: () => {
-          showModal = !showModal;
-          this.children.modal.props.showModal = showModal;
+          store.set('showModal', true)
         },
       },
     });
     this.children.modal = new Modal({
       title: 'Загрузите файл',
       content: FileUploader,
-      showModal,
       events: {
-        submit: (e: any) => {
+        submit: (e: Event) => {
           e.preventDefault();
           if (document.getElementById('myUserForm')) {
-            const myUserForm: HTMLFormElement = document.getElementById('myUserForm')!;
+            const myUserForm = document.getElementById('myUserForm') as HTMLFormElement;
             const form = new FormData(myUserForm);
 
             ProfileController.updateAvatar(form);
@@ -51,18 +48,21 @@ class ChangeProfile extends Block {
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          const { fields, isValid } = initEventSubmit(
+          const result = initEventSubmit(
             this.children.form.children,
             'profile',
           );
-          if (isValid) {
-            ProfileController.update(fields);
-            AuthController.fetchUser();
-          } else {
-            this.children.form.children.error.setProps({
-              errorMessage: 'Не заполнены обязательные поля',
-            });
-            this.children.form.children.error.element.classList.remove('hide');
+          if (result) {
+            const { fields, isValid } = result;
+            if (isValid) {
+              ProfileController.update(fields);
+              AuthController.fetchUser();
+            } else {
+              this.children.form.children.error.setProps({
+                errorMessage: 'Не заполнены обязательные поля',
+              });
+              this.children.form.children.error.element.classList.remove('hide');
+            }
           }
         },
       },

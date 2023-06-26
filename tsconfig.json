@@ -3,6 +3,7 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "moduleResolution":"node",
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,

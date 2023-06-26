@@ -1,11 +1,9 @@
 import Form from '../../modules/Form/index';
-import Modal from '../../components/modal/modal';
 import { registrationfields } from '../login/const';
 import { initEventSubmit } from '../../utils/helpers';
 import Block from '../../utils/block';
 import template from './index.pug';
 import AuthController from '../../controllers/AuthController';
-import { withStore, store } from '../../utils/Store';
 
 export class Registartion extends Block {
   constructor() {
@@ -20,7 +18,11 @@ export class Registartion extends Block {
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          const { fields, isValid } = initEventSubmit(this.children.form.children, 'reg');
+          const result = initEventSubmit(this.children.form.children, 'reg');
+          if (!result) {
+            return
+          }
+          const { fields, isValid } = result
           if (isValid) {
             AuthController.signup(fields);
           } else {

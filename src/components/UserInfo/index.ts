@@ -4,7 +4,6 @@ import Avatar from '../avatar/index';
 import Counter from '../counter/index';
 import Timer from '../timer/index';
 import './style.scss';
-import { IChatInfo } from '../../pages/interfaces/index';
 import image from '../../../static/icons/avatar.jpg';
 import { withStore, store } from '../../utils/Store';
 
@@ -19,7 +18,7 @@ interface IProps {
   events?: any
 }
 
-class Chat extends Block {
+class UserInfo extends Block {
   constructor(props: IProps) {
     super('div', props);
   }
@@ -42,6 +41,8 @@ class Chat extends Block {
     } else {
       this.element.classList.remove('active');
     }
+
+    return true
   }
 
   render() {
@@ -49,8 +50,8 @@ class Chat extends Block {
   }
 }
 
-const WithChat = withStore((state) => {
+const WithUserInfo = withStore((state) => {
   return { ...state };
 });
 
-export default WithChat(Chat);
+export default WithUserInfo(UserInfo);

@@ -4,7 +4,9 @@ import Input from '../../components/newInput/index';
 import BreadCrumbs from '../../components/breadCrumbs/index';
 import { profileFields } from '../login/const';
 import './style.scss';
+import Avatar from '../../components/avatar/index';
 import { IInputItem } from '../interfaces/index';
+import image from '../../../static/icons/avatar.jpg';
 import Link from '../../components/link/index';
 import { store } from '../../utils/Store';
 import AuthController from '../../controllers/AuthController';
@@ -24,6 +26,7 @@ class Profile extends Block {
 
     this.children.breadCrumbs = new BreadCrumbs({});
 
+    this.children.avatar = new Avatar({ src: image });
     if (Array.isArray(this.props?.list)) {
       this.props.list.forEach((item: IInputItem) => {
         if (user.data && user.data[item.name]) {

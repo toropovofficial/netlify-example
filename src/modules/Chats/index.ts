@@ -1,6 +1,7 @@
 import template from './index.pug';
 import Block from '../../utils/block';
 import { withStore } from '../../utils/Store';
+import image from "../../../static/icons/avatar.jpg";
 import './style.scss';
 
 class Chats extends Block {
@@ -10,15 +11,15 @@ class Chats extends Block {
 
   init() {
     this.element.classList.add('Chats');
-    console.log(this.props.chats)
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, {...this.props, src: image});
   }
 }
 
 const WithChats = withStore((state) => {
+  console.log(state.chats)
   return { chats: state.chats };
 });
 

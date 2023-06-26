@@ -3,7 +3,7 @@ import Block from '../../utils/block';
 import './style.scss';
 import Icon from '../icon/index';
 import image from '../../../static/icons/leftArrow.png';
-import { withStore, store } from '../../utils/Store';
+import { withStore, } from '../../utils/Store';
 
 interface IProps {
   text?: string;

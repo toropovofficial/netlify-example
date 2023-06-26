@@ -1,0 +1,31 @@
+.chat {
+    height: calc(100% - 88px);
+    padding: 5px;
+    &__wrapper {
+        height: calc(100% - 20px);
+        padding: 5px;
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.input__wrapper {
+    width: 95%;
+    border-radius: 30px;
+    background: #EFEFEF;
+    padding: 0 10px;
+    height: 40px;
+    input {
+        height: 100%;
+        width: 100%;
+        background: #EFEFEF;
+    }
+}
+
+.button__wrapper {
+    width: 32px;
+    cursor: pointer;
+}

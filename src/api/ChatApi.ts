@@ -1,16 +1,35 @@
 import BaseAPI from './baseApi';
 
-export default class ChatAPI extends BaseAPI {
+export interface IAdded{
+  users:(FormDataEntryValue | null)[],
+  chatId: number
+}
+
+export interface ICreate {
+  title: string
+}
+
+export class ChatAPI extends BaseAPI {
   constructor() {
     super('/chats');
   }
 
-  createChat(data: any) {
+  createChat(data: ICreate) {
+    console.log(data)
+    debugger
     return this.http.post('', data);
+  }
+
+  connectionChat(id: number | string) {
+    return this.http.post(`/token/${id}`);
   }
 
   getChats() {
     return this.http.get('');
+  }
+
+  add(data: IAdded) {
+    return this.http.put('/users', data)
   }
 
   create = undefined;

@@ -3,8 +3,8 @@ if isActive
     #{avatar}
   .user__info 
     .user__name=title
-  .Burger__btn
-    #{Burger}
+  .add__btn.ml-auto
+    #{points}
   #{actions}
 else 
   .user__avatar
@@ -14,7 +14,7 @@ else
       .user__name=data.display_name
     else 
       .user__name user
-    .user__message=message
+    .user__status=message
   .user__action
     .user__notification
       #{notification}
@@ -22,3 +22,5 @@ else
         #{count}
     .user__settings.pointer 
       #{settingsIcon}
+    .user__settings.add__btn
+      #{plus}

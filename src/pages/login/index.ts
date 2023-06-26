@@ -6,8 +6,6 @@ import Block from '../../utils/block';
 import template from './index.pug';
 import AuthController from '../../controllers/AuthController';
 
-const listItem: any  = []
-
 export class Login extends Block {
   constructor() {
     super('section', {});
@@ -21,7 +19,11 @@ export class Login extends Block {
       events: {
         submit: (e: Event) => {
           e.preventDefault();
-          const { fields, isValid } = initEventSubmit(this.children.form.children, 'login');
+          const result = initEventSubmit(this.children.form.children, 'login');
+          if (!result) {
+            return
+          }
+          const { fields, isValid } = result
           if (isValid) {
             AuthController.signin(fields);
           } else {
@@ -40,7 +42,7 @@ export class Login extends Block {
 
 export default class LoginPage {
   getContent() {
-    const loginModal = new Modal({ title: 'Вход', content: Login, showModal: true });
+    const loginModal = new Modal({ title: 'Вход', content: Login });
     return loginModal.element;
   }
 }

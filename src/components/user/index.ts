@@ -8,6 +8,8 @@ import './style.scss';
 import image from '../../../static/icons/admin.jpg';
 import settings from '../../../static/icons/settings.jpg';
 import notification from '../../../static/icons/notification.jpg';
+import points from '../../../static/icons/points.png';
+import plus from '../../../static/icons/plus.png';
 import Burger from '../Burger/index';
 import { withStore } from '../../utils/Store';
 
@@ -47,6 +49,14 @@ class User extends Block {
           $router.go('/profile');
         },
       },
+    });
+
+    this.children.points = new Icon({
+      src: points,
+    });
+
+    this.children.plus = new Icon({
+      src: plus,
     });
 
     this.children.notification = new Icon({

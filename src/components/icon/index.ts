@@ -1,5 +1,6 @@
 import template from './index.pug';
 import Block from '../../utils/block';
+import './style.scss';
 
 interface IProps {
   src: string
