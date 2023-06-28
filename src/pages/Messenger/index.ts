@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import sanitizeHtml from 'sanitize-html';
 import template from './index.pug';
 import Block from '../../utils/block';
 import User from '../../components/user/index';
@@ -11,7 +13,7 @@ import Modal from '../../components/modal/modal';
 import ChatsList from '../../modules/Chats/index';
 import ChatController from '../../controllers/ChatController';
 import './style.scss';
-import { IActiveChat } from '../../utils/interfaces';
+import { IActiveChat, IChat } from '../../utils/interfaces';
 
 export default class MessengerPage extends Block {
   constructor() {
@@ -23,7 +25,7 @@ export default class MessengerPage extends Block {
       this.element.classList.add('chats');
     }
     const { chats } = store.state;
-    let activeChat: IActiveChat | null = null;
+    let activeChat: IChat | null | undefined = null;
 
     let showActionsModal = false;
     let actionsModalTitle = 'Добавить чат';
@@ -37,6 +39,9 @@ export default class MessengerPage extends Block {
           const target = e.target as HTMLFormElement;
           if (target.tagName === 'IMG' && target.parentElement?.parentElement?.classList.contains('add__btn')) {
             store.set('showModal', true);
+            actionsModalTitle = 'Добавить чат';
+
+            this.children.chatModal.setProps({ title: actionsModalTitle });
           }
         },
       },
@@ -58,7 +63,7 @@ export default class MessengerPage extends Block {
           }
 
           const { chats } = store.state;
-          activeChat = chats.find((item: IActiveChat) => { return item.id === +id; });
+          activeChat = chats.find((item: IChat) => { return item.id === +id; });
           if (activeChat) {
             store.set('activeChat', activeChat);
             await ChatController.connectionChat(activeChat.id);
@@ -67,36 +72,41 @@ export default class MessengerPage extends Block {
       },
     });
 
-    this.children.modal = new Modal({
-      title: actionsModalTitle,
-      Content: Action,
-      events: {
-        submit: (e: Event) => {
-          const target = e.target as HTMLFormElement;
-          const formData = new FormData(target);
-          const name = formData.get('user-name');
-          ChatController.addUserToChat({
-            users: [
-              name,
-            ],
-            chatId: store.state.activeChat.id,
-          });
-        },
-      },
-    });
-
     this.children.chatModal = new Modal({
-      title: 'Добавить чат',
+      title: actionsModalTitle,
       Content: Action,
       events: {
         submit: (e: Event) => {
           e.preventDefault();
           const target = e.target as HTMLFormElement;
           const formData = new FormData(target);
-          const name = formData.get('user-name');
-          if (name && typeof name === 'string') {
-            ChatController.create({ title: name });
+          const name: FormDataEntryValue | null | any = formData.get('user-name');
+          const safeName = sanitizeHtml(name);
+          if (actionsModalTitle === 'Добавить чат') {
+            if (safeName && typeof safeName === 'string') {
+              ChatController.create({ title: safeName });
+            }
           }
+
+          if (actionsModalTitle === 'Добавить пользователя') {
+            ChatController.addUserToChat({
+              users: [
+                safeName,
+              ],
+              chatId: store.state.activeChat.id,
+            });
+          }
+
+          if (actionsModalTitle === 'Удалить пользователя') {
+            ChatController.removeUserToChat({
+              users: [
+                safeName,
+              ],
+              chatId: store.state.activeChat.id,
+            });
+          }
+
+          store.set('showModal', false);
         },
       },
     });

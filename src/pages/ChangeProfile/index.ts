@@ -1,7 +1,7 @@
 import template from './index.pug';
 import Block from '../../utils/block';
 import ProfileForm from '../../modules/newProfileForm/index';
-import { profileFields } from '../login/const';
+import { profileFields } from '../SignIn/const';
 import './style.scss';
 import { initEventSubmit } from '../../utils/helpers';
 import ProfileController from '../../controllers/ProfileController';
@@ -36,7 +36,6 @@ class ChangeProfile extends Block {
           if (document.getElementById('myUserForm')) {
             const myUserForm = document.getElementById('myUserForm') as HTMLFormElement;
             const form = new FormData(myUserForm);
-
             ProfileController.updateAvatar(form);
           }
         },

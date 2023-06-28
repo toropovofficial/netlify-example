@@ -2,6 +2,8 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-continue */
+// eslint-disable-next-line import/no-extraneous-dependencies
+import sanitizeHtml from 'sanitize-html';
 import { IRegistartionFields } from '../pages/interfaces/index';
 import validation from './validation';
 
@@ -50,7 +52,7 @@ export function initEventSubmit(children: any, isLogin?: string) {
   Object.keys(children).forEach((key) => {
     const input = children[key].element.querySelector('input');
     if (input && fields[key as keyof IRegistartionFields] !== undefined) {
-      fields[key as keyof IRegistartionFields] = input.value;
+      fields[key as keyof IRegistartionFields] = sanitizeHtml(input.value);
     }
   });
 

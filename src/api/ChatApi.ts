@@ -30,6 +30,10 @@ export class ChatAPI extends BaseAPI {
     return this.http.put('/users', data);
   }
 
+  remove(data: IAdded) {
+    return this.http.delete('/users', data);
+  }
+
   create = undefined;
 
   update = undefined;

@@ -41,7 +41,7 @@ class AuthController {
       .then(() => {
         store.set('user', null);
         store.set('showModal', true);
-        $router.go('/login');
+        $router.go('/sign-in');
       });
   }
 

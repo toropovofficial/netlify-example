@@ -55,7 +55,7 @@ const initialState: State = {
 };
 
 class Store extends EventBus {
-  private state = initialState;
+  public state = initialState;
 
   constructor() {
     super('');

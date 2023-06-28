@@ -4,6 +4,7 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "moduleResolution":"node",
+    "allowSyntheticDefaultImports": true,
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,

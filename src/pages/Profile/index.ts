@@ -2,7 +2,7 @@ import template from './index.pug';
 import Block from '../../utils/block';
 import Input from '../../components/newInput/index';
 import BreadCrumbs from '../../components/breadCrumbs/index';
-import { profileFields } from '../login/const';
+import { profileFields } from '../SignIn/const';
 import './style.scss';
 import Avatar from '../../components/avatar/index';
 import { IInputItem } from '../interfaces/index';

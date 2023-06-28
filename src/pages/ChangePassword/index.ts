@@ -1,11 +1,10 @@
 import template from './index.pug';
 import Block from '../../utils/block';
 import ProfileForm from '../../modules/newProfileForm/index';
-import { passwordFields } from '../login/const';
+import { passwordFields } from '../SignIn/const';
 import './style.scss';
 import { IInputItem } from '../interfaces/index';
 import { initEventSubmit } from '../../utils/helpers';
-import { store } from '../../utils/Store';
 import ProfileController from '../../controllers/ProfileController';
 import AuthController from '../../controllers/AuthController';
 

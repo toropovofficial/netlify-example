@@ -1,5 +1,5 @@
 import Form from '../../modules/Form/index';
-import { registrationfields } from '../login/const';
+import { registrationfields } from '../SignIn/const';
 import { initEventSubmit } from '../../utils/helpers';
 import Block from '../../utils/block';
 import template from './index.pug';

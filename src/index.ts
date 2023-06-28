@@ -1,22 +1,22 @@
 /* eslint-disable no-tabs */
-import LoginPage from './pages/login/index';
-import { RegistartionPage } from './pages/registration/index';
+import LoginPage from './pages/SignIn/index';
+import { RegistartionPage } from './pages/SignUp/index';
 import ProfilePage from './pages/Profile/index';
-import ChangeProfilePage from './pages/changeProfile/index';
-import changePasswordPage from './pages/changePassword/index';
-import Messenger from './pages/messenger/index';
+import ChangeProfilePage from './pages/ChangeProfile/index';
+import changePasswordPage from './pages/ChangePassword/index';
+import Messenger from './pages/Messenger/index';
 import './utils/HTTPTransport';
 import Router from './utils/Router';
 import AuthController from './controllers/AuthController';
 import ChatController from './controllers/ChatController';
 // eslint-disable-next-line import/extensions
-import { store } from './utils/Store.ts';
+import { store } from './utils/Store';
 
 const initApp = async () => {
   const router = new Router('#root');
 
   router
-    .use('/login', LoginPage)
+    .use('/sign-in', LoginPage)
     .use('/sign-up', RegistartionPage)
     .use('/profile', ProfilePage)
     .use('/messenger', Messenger)
@@ -38,7 +38,7 @@ const initApp = async () => {
     case path === '/':
       router.go('/messenger');
       break;
-    case path === '/login':
+    case path === '/sign-in':
       router.go('/messenger');
       break;
     case path === '/sign-up':
@@ -49,7 +49,7 @@ const initApp = async () => {
     }
   } catch (error) {
     store.set('showModal', true);
-    router.go('/login');
+    router.go('/sign-in');
   }
 };
 

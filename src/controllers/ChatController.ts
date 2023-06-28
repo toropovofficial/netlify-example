@@ -48,6 +48,13 @@ class ChatController {
         throw new Error(x);
       });
   }
+
+  async removeUserToChat(data: IAdded) {
+    this.api.remove(data)
+      .catch((x: any) => {
+        throw new Error(x);
+      });
+  }
 }
 
 export default new ChatController();

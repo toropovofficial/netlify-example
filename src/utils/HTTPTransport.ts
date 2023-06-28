@@ -51,9 +51,10 @@ export default class HTTPTransport {
     });
   }
 
-  public delete<Response>(path: string): Promise<Response> {
+  public delete<Response>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Delete,
+      data,
     });
   }
 
@@ -67,7 +68,7 @@ export default class HTTPTransport {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
-      xhr.onreadystatechange = (e) => {
+      xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
             resolve(xhr.response);
@@ -90,6 +91,7 @@ export default class HTTPTransport {
       if (!url.includes('avatar')) {
         xhr.setRequestHeader('Content-Type', 'application/json');
       }
+      xhr.setRequestHeader('Content-Security-Policy', ' media-src https://yandex.ru ');
       xhr.withCredentials = true;
       xhr.responseType = 'json';
 
