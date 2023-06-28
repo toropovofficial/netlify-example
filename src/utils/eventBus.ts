@@ -23,7 +23,7 @@ export default class EventBus<T> implements IEventBus<T> {
 
   off(event: string, callback: ListenerCallback<T>): void {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      console.error(`Нет события: ${event}`);
     }
 
     this.listeners[event] = this.listeners[event].filter((listener) => {
@@ -33,7 +33,7 @@ export default class EventBus<T> implements IEventBus<T> {
 
   emit(event: string, ...args: any): void {
     if (!this.listeners || !this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      return;
     }
 
     this.listeners[event].forEach((listener: any): void => {

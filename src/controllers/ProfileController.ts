@@ -35,7 +35,7 @@ class ProfileController {
         store.set('user.data', x);
       })
       .catch((err: any) => {
-        throw new Error(err);
+        console.error(err)
       });
   }
 

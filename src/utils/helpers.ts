@@ -141,7 +141,7 @@ export function set(
   }
 
   if (typeof path !== 'string') {
-    throw new Error('path must be string');
+    console.error('path must be string');
   }
 
   const result = path.split('.').reduceRight<Indexed>((acc, key) => {

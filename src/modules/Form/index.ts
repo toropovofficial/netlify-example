@@ -41,7 +41,7 @@ class Form extends Block {
       text: 'Войти',
       events: {
         click: () => {
-          $router.go('/login');
+          $router.go('/sign-in');
         },
       },
     });

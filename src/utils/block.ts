@@ -220,9 +220,6 @@ export default class Block<P extends Record<string, any> = any> {
 
         return true;
       },
-      deleteProperty() {
-        throw new Error('нет доступа');
-      },
     });
   }
 

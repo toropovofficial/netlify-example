@@ -19,9 +19,6 @@
     }
   ],
   "keywords": [],
-  "engines": {
-    "node": "16.0.0"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -49,9 +46,6 @@
     "sanitize-html": "^2.11.0",
     "stylelint-config-standard-scss": "^7.0.1",
     "typescript": "^5.0.2"
-  },
-  "alias": {
-    "@components": "./src/components"
   },
   "dependencies": {
     "@parcel/transformer-pug": "^2.8.3",

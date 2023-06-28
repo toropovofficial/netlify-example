@@ -45,14 +45,14 @@ class ChatController {
   async addUserToChat(data: IAdded) {
     this.api.add(data)
       .catch((x: any) => {
-        throw new Error(x);
+        console.error(x);
       });
   }
 
   async removeUserToChat(data: IAdded) {
     this.api.remove(data)
       .catch((x: any) => {
-        throw new Error(x);
+        console.error(x);
       });
   }
 }
