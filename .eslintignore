@@ -1,0 +1,13 @@
+# Ignore build artifacts
+build/
+dist/
+out/
+lib/
+node_modules/
+
+# Ignore TypeScript declaration files
+*.d.ts
+
+# Ignore specific files or directories
+src/legacy-code/
+src/assets/

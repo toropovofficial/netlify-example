@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #FFF;
+  border: none;
+  width: 226px;
+  height: 37px;
+  background: $base-color;
+  border-radius: 15px;
+  cursor: pointer;
+}

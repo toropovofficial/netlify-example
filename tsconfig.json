@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "moduleResolution":"node",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "es2017",
+    "module": "es2022",
+    "lib": ["esnext", "dom"]
+  },
+  "exclude": [
+      "node_modules"
+  ],
+}

@@ -1,0 +1,8 @@
+if showModal
+  .modal 
+    .modal__layout 
+      .modal__wrapper
+        h1=title
+        if showCloseIcon
+          | !{close}
+        #{content}
