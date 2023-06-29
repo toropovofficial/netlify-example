@@ -9,6 +9,7 @@ import settings from '../../../static/icons/settings.jpg';
 import notification from '../../../static/icons/notification.jpg';
 import points from '../../../static/icons/points.png';
 import plus from '../../../static/icons/plus.png';
+import minus from '../../../static/icons/minus.png';
 import { withStore } from '../../utils/Store';
 
 interface IProps {
@@ -47,6 +48,10 @@ class User extends Block {
 
     this.children.plus = new Icon({
       src: plus,
+    });
+
+    this.children.minus = new Icon({
+      src: minus,
     });
 
     this.children.notification = new Icon({
