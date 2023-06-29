@@ -5,7 +5,7 @@
   "source": "static/index.html",
   "scripts": {
     "start": "parcel  --port 3000 --open",
-    "build": "parcel build static/index.html",
+    "build": "parcel build static/index.html && node ./server.js",
     "lint": "eslint . --ext .js,.ts",
     "lint:styles": "stylelint 'src/**/*.scss'"
   },

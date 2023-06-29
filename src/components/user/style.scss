@@ -10,7 +10,7 @@
   }
 
   &__info {
-    margin-right: 100px;
+    margin-right: 80px;
   }
 
   &__counter {
@@ -41,7 +41,13 @@
 }
 
 .add__btn {
-  margin-left: 10px;
+  margin: 0 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.remove__btn {
   width: 20px;
   height: 20px;
   cursor: pointer;

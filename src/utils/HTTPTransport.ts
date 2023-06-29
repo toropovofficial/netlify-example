@@ -11,6 +11,17 @@ type Options = {
   data?: any;
 };
 
+function queryStringify(data: any) {
+  if (typeof data !== 'object') {
+    throw new Error('Data must be object');
+  }
+
+  const keys = Object.keys(data);
+  return keys.reduce((result, key, index) => {
+    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+  }, '?');
+}
+
 export default class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
 
@@ -66,7 +77,14 @@ export default class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      const isGet = method === Method.Get;
+
+      xhr.open(
+        method,
+        isGet && !!data
+          ? `${url}${queryStringify(data)}`
+          : url,
+      );
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {

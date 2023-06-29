@@ -10,6 +10,10 @@ interface createData {
   title: string
 }
 
+interface deleteData {
+  chatId: number
+}
+
 class ChatController {
   private api: any;
 
@@ -20,6 +24,15 @@ class ChatController {
   async create(data: createData) {
     this.api
       .createChat(data)
+      .then(async () => {
+        await this.getChats();
+      })
+      .catch(() => {});
+  }
+
+  async deleteChat(data: deleteData) {
+    this.api
+      .deleteChat(data)
       .then(async () => {
         await this.getChats();
       })

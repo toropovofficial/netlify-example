@@ -37,10 +37,17 @@ export default class MessengerPage extends Block {
       events: {
         click: (e: Event) => {
           const target = e.target as HTMLFormElement;
-          if (target.tagName === 'IMG' && target.parentElement?.parentElement?.classList.contains('add__btn')) {
+          if (!(target.tagName === 'IMG')) {
+            return;
+          }
+          if (target.parentElement?.parentElement?.classList.contains('add__btn')) {
             store.set('showModal', true);
             actionsModalTitle = 'Добавить чат';
 
+            this.children.chatModal.setProps({ title: actionsModalTitle });
+          } else if (target.parentElement?.parentElement?.classList.contains('remove__btn')) {
+            store.set('showModal', true);
+            actionsModalTitle = 'Удалить чат';
             this.children.chatModal.setProps({ title: actionsModalTitle });
           }
         },
@@ -88,10 +95,14 @@ export default class MessengerPage extends Block {
             }
           }
 
+          if (actionsModalTitle === 'Удалить чат') {
+            ChatController.deleteChat({ chatId: +safeName });
+          }
+
           if (actionsModalTitle === 'Добавить пользователя') {
             ChatController.addUserToChat({
               users: [
-                safeName,
+                +safeName,
               ],
               chatId: store.state.activeChat.id,
             });
@@ -100,7 +111,7 @@ export default class MessengerPage extends Block {
           if (actionsModalTitle === 'Удалить пользователя') {
             ChatController.removeUserToChat({
               users: [
-                safeName,
+                +safeName,
               ],
               chatId: store.state.activeChat.id,
             });

@@ -71,7 +71,8 @@ class Profile extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    const { user } = store.getState();
+    return this.compile(template, { ...this.props, name: user?.data?.first_name });
   }
 }
 

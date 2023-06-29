@@ -27,7 +27,12 @@ class Chat extends Block {
           if (!this.socket) {
             return;
           }
+
           const message = this.children.input.element.value;
+          if (!message) {
+            return;
+          }
+
           this.socket.send(JSON.stringify({
             content: message,
             type: 'message',
@@ -52,13 +57,17 @@ class Chat extends Block {
       });
 
       this.socket.onmessage = (event: any) => {
-        const data = JSON.parse(event.data);
-        if (Array.isArray(data)) {
-          store.set('messages', data);
-        } else {
-          const { messages } = store.state;
-          messages.push(data);
-          store.set('messages', messages);
+        try {
+          const data = JSON.parse(event.data);
+          if (Array.isArray(data)) {
+            store.set('messages', data);
+          } else {
+            const { messages } = store.state;
+            messages.push(data);
+            store.set('messages', messages);
+          }
+        } catch (error) {
+          console.error(error);
         }
       };
     }

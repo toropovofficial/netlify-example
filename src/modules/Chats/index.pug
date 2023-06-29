@@ -2,8 +2,10 @@ each val in chats
   .item(id=val.id)
     .item__data(id=val.id)
       .item__image(id=val.id)
-        img(src=val.avatar || src id=val.id)
-        =val.avatar
+        if val.avatar
+          img(src='https://ya-praktikum.tech/api/v2/resources/' + val.avatar id=val.id)
+        else 
+          img(src=src id=val.id)
       .item__user(id=val.id)
         .chat__name(id=val.id)=val.title
         if val.last_message

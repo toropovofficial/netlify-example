@@ -1,12 +1,16 @@
 import BaseAPI from './baseApi';
 
 export interface IAdded{
-  users:(FormDataEntryValue | null)[],
+  users:(FormDataEntryValue | null | number)[],
   chatId: number
 }
 
 export interface ICreate {
   title: string
+}
+
+export interface IDelete {
+  chatId: number
 }
 
 export class ChatAPI extends BaseAPI {
@@ -16,6 +20,10 @@ export class ChatAPI extends BaseAPI {
 
   createChat(data: ICreate) {
     return this.http.post('', data);
+  }
+
+  deleteChat(data: IDelete) {
+    return this.http.delete('', data);
   }
 
   connectionChat(id: number | string) {
