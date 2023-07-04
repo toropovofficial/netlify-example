@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Краткое описание: В проекте используется шаблонизатор pug, есть единственная точка входа - index.html, этот файл расположен в папке static. Также в папке static есть иконка и изображение. В папке src лежит вся логика приложения. Собирается проект в папку dist на 3000 порту. Роутинг пока не готов, контент отображается в зависимости от текущего url. Натстроена отдача статики в файле server.js. Верстка сыровата, будем причесывать в следующих спринтах. Для стилей использую препроцессор sass.  Апдейт со второго спринта: Проект переписан на typescript, добавлена папка модули, где лежат компоненты, которые включают в себя другие пкомпоненты и в будущем будут содержать бизнес логику. Подключен eslint и styleList. Реализованы класс block, eventBus, а также класс для запросов. Добавлена валидация для форм, повторяющийся метод вынесен в utils/helper. Создана страница чата, сами сообщения еще не сверстаны пока нет переключения между чатами. Визуальную состовляющую нужно будет приводить в порядок. Figma: https://www.figma.com/file/CR50w8VrFDbQrJfz89FmoX/Untitled?node-id=14%3A151&t=SBQhRamUc8oHjImx-0 Netlify domain: https://melodious-arithmetic-dac542.netlify.app/ Команда для запуска: npm run start Команда для сборки: npm run build Команда для eslint: npm run lint Команда для styleLint: npm run lint:styles",
   "source": "static/index.html",
+  "type": "module",
   "scripts": {
     "start": "parcel  --port 3000 --open",
     "build": "parcel build static/index.html && node ./server.js",
     "lint": "eslint . --ext .js,.ts",
-    "lint:styles": "stylelint 'src/**/*.scss'"
+    "lint:styles": "stylelint 'src/**/*.scss'",
+    "test": "mocha"
   },
   "parcel-namer-struct": [
     {
@@ -25,6 +27,8 @@
     "@parcel/resolver-default": "^2.8.3",
     "@parcel/transformer-inline-string": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
     "@typescript-eslint/parser": "^5.57.0",
     "assert": "^2.0.0",
     "buffer": "^5.7.1",
@@ -42,28 +46,35 @@
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "pug-cli": "*",
-    "sass": "^1.59.2",
     "sanitize-html": "^2.11.0",
+    "sass": "^1.59.2",
     "stylelint-config-standard-scss": "^7.0.1",
     "typescript": "^5.0.2"
   },
   "dependencies": {
+    "@babel/register": "^7.22.5",
     "@parcel/transformer-pug": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
     "@rushstack/eslint-patch": "^1.3.2",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.7.0",
     "@types/sanitize-html": "^2.9.0",
     "@types/ws": "^8.5.5",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "chai": "^4.3.7",
     "dart-sass": "^1.25.0",
     "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
     "express": "^4.18.2",
     "fs": "*",
+    "mocha": "^10.2.0",
     "parcel-plugin-change-file": "^1.3.0",
     "pug": "^3.0.2",
     "sanitize-html": "^2.11.0",
     "sass": "^1.59.2",
-    "stylelint-scss": "^4.7.0"
+    "stylelint-scss": "^4.7.0",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.1"
   },
   "repository": {
     "type": "git",

@@ -14,7 +14,6 @@ import { store } from './utils/Store';
 
 const initApp = async () => {
   const router = new Router('#root');
-
   router
     .use('/sign-in', LoginPage)
     .use('/sign-up', RegistartionPage)
