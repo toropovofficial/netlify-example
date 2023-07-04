@@ -2,13 +2,27 @@
   display: flex;
   align-items: center;
   min-height: 68px;
+  padding: 5px;
 
   &__avatar {
+    width: 50px;
     margin-right: 22px;
   }
 
   &__info {
-    margin-right: 100px;
+    margin-right: 80px;
+  }
+
+  &__counter {
+    top: -4px;
+    right: -7px;
+    position: absolute;
+    font-size: 10px;
+
+    .counter {
+      width: 13px;
+      height: 13px;
+    }
   }
 
   &__name {
@@ -16,6 +30,33 @@
   }
 
   &__action {
-   margin-right: 22px;
+    position: relative;
+    margin-right: 22px;
+  }
+
+}
+
+.ml-auto {
+  margin-left: auto!important;
+}
+
+.add__btn {
+  margin: 0 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.remove__btn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.active-user {
+  border-bottom: 1px solid #EAEAEA;
+
+  .user__avatar {
+    width: 60px;
   }
 }

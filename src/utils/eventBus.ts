@@ -1,4 +1,4 @@
- type ListenerCallback<T> = (data: T) => void;
+type ListenerCallback<T> = (data: T) => void;
 
 interface IEventBus<T> {
   on(event: string, callback: ListenerCallback<T>): void;
@@ -23,15 +23,17 @@ export default class EventBus<T> implements IEventBus<T> {
 
   off(event: string, callback: ListenerCallback<T>): void {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      console.error(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter((listener) => { return listener !== callback; });
+    this.listeners[event] = this.listeners[event].filter((listener) => {
+      return listener !== callback;
+    });
   }
 
   emit(event: string, ...args: any): void {
-    if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+    if (!this.listeners || !this.listeners[event]) {
+      return;
     }
 
     this.listeners[event].forEach((listener: any): void => {

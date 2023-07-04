@@ -30,10 +30,18 @@ h1 {
 }
 
 .link {
+  display: block;
+  text-align: center;
   font-size: 11px;
   color: $base-color;
+  cursor: pointer;
+  margin-top: 15px;
 }
 
 .hide {
   display: none;
+}
+
+.pointer {
+  cursor: pointer;
 }

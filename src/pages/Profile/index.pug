@@ -1,0 +1,34 @@
+#{breadCrumbs}
+.profile
+  .profile__avatar
+    | !{ avatar }
+
+  .profile__name=name 
+
+  .profile__data
+    form
+      .profile__data__item
+        p почта
+        |  !{ email } 
+      .profile__data__item
+        p логин
+        |  !{ login } 
+      .profile__data__item
+        p имя
+        |  !{ first_name } 
+      .profile__data__item
+        p фамилия
+        |  !{ second_name } 
+      .profile__data__item 
+        p Имя в чате
+        | !{ display_name }
+      .profile__data__item
+        p телефон
+        |  !{ phone } 
+
+  .profile__actions
+    |  !{ changeDataLink } 
+    |  !{ changePasswordLink } 
+    |  !{ homelink } 
+
+

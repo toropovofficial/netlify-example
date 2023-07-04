@@ -6,9 +6,13 @@ interface IProps {
   name: string;
   value?: string;
   type?: string;
+  class?: string;
   placeholder?: string;
   disabled?: boolean;
-  events?: any
+  events?: {
+    blur: (e: Event) => void;
+    focus: (e: Event) => void;
+  };
 }
 
 export default class Input extends Block {
