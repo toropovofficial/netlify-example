@@ -50,6 +50,7 @@ const initApp = async () => {
     store.set('showModal', true);
     router.go('/sign-in');
   }
+  console.log(window.history)
 };
 
 initApp();

@@ -127,7 +127,7 @@ export default class Block<P extends Record<string, any> = any> {
   }
 
   componentDidUpdate(oldProps: Record<string, unknown>, newProps: Record<string, unknown>) {
-    // console.log(oldProps, newProps)
+    console.log(oldProps, newProps)
     // if (newProps === 'Login already exists') {
     //   debugger
     // }

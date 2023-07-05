@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "experimentalDecorators": true,
     "noImplicitAny": true,
@@ -10,10 +13,10 @@
     "esModuleInterop": true,
     "strictNullChecks": true,
     "target": "es2017",
-    "module": "es2022",
+    "module": "commonjs", 
     "lib": ["esnext", "dom"]
   },
-  "include": ["./src/test/*spec.ts"],
+  "include": ["src/utils/router.test.ts"],
   "exclude": [
       "node_modules"
   ],
