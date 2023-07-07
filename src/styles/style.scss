@@ -1,4 +1,34 @@
 @import './variables';
+@import '../components/Action/style.scss';
+@import '../components/Actions/style.scss';
+@import '../components/avatar/style.scss';
+@import '../components/breadCrumbs/style.scss';
+@import '../components/checkboxNew/style.scss';
+@import '../components/counter/style.scss';
+@import '../components/errorPage/style.scss';
+@import '../components/FileUploader/style.scss';
+@import '../components/icon/style.scss';
+@import '../components/messages/style.scss';
+@import '../components/modal/style.scss';
+@import '../components/newButton/style.scss';
+@import '../components/newIcon/style.scss';
+@import '../components/newIcon/style.scss';
+@import '../components/newInput/style.scss';
+@import '../components/search/style.scss';
+@import '../components/tab/style.scss';
+@import '../components/user/style.scss';
+@import '../components/UserInfo/style.scss';
+@import '../modules/Chat/style.scss';
+@import '../modules/Chats/style.scss';
+@import '../modules/fieldNew/style.scss';
+@import '../modules/Form/style.scss';
+@import '../modules/newProfileForm/style.scss';
+@import '../modules/profileField/style.scss';
+@import '../modules/tabs/style.scss';
+@import '../pages/ChangePassword/style.scss';
+@import '../pages/ChangeProfile/style.scss';
+@import '../pages/Messenger/style.scss';
+@import '../pages/Profile/style.scss';
 
 body,
 html {

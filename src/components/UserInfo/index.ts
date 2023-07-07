@@ -3,7 +3,6 @@ import Block from '../../utils/block';
 import Avatar from '../avatar/index';
 import Counter from '../counter/index';
 import Timer from '../timer/index';
-import './style.scss';
 import image from '../../../static/icons/avatar.jpg';
 import { withStore } from '../../utils/Store';
 

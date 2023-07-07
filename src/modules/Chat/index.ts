@@ -5,7 +5,6 @@ import Input from '../../components/newInput/index';
 import Icon from '../../components/icon/index';
 import arrow from '../../../static/icons/arrow.jpg';
 import Messages from '../../components/messages/index';
-import './style.scss';
 
 class Chat extends Block {
   [x: string]: any;

@@ -3,7 +3,6 @@ import Block from '../../utils/block';
 import { withStore, store } from '../../utils/Store';
 import Icon from '../icon/index';
 import close from '../../../static/icons/close.png';
-import './style.scss';
 
 interface IProps {
   title: string
