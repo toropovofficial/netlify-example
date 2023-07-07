@@ -11,6 +11,7 @@ import AuthController from './controllers/AuthController';
 import ChatController from './controllers/ChatController';
 // eslint-disable-next-line import/extensions
 import { store } from './utils/Store';
+import '../src/styles/style.scss'
 
 const initApp = async () => {
   const router = new Router('#root');

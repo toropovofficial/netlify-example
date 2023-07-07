@@ -7,13 +7,18 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: './src/index.ts',
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
       filename: 'bundle.js'
   },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+},
     resolve: {
         extensions: ['.ts', '.js', '.json', 'scss']
   },
@@ -33,7 +38,8 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'assets/style-[hash].css',
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
   ],
     module: {
@@ -70,17 +76,15 @@ module.exports = {
           }
         },
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.scss$/,
+          exclude: /node_modules/,
           use: [
             {
-              loader: 'sass-loader',
-             
+              loader: "file-loader",
+              options: { outputPath: "css/", name: "[name].min.css" },
             },
-            "style-loader",
+            "sass-loader",
           ],
-          generator: {
-            filename: 'assets/style/[name].[hash:8][ext]'
-          },
         },
         
       ],
